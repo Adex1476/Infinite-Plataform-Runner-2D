@@ -70,7 +70,7 @@ public class Ground : MonoBehaviour
         float maxY = maxJumpHeight * 0.7f;
         maxY += groundHeight;
         float minY = 1;
-        float actualY = Random.Range(minY, maxY) - goCollider.size.y / 2;
+        float actualY = Random.Range(minY, maxY); //- goCollider.size.y / 2;
 
         pos.y = actualY - goCollider.size.y / 2;
         if (pos.y > 2.7f)
@@ -85,7 +85,7 @@ public class Ground : MonoBehaviour
         float minX = screenRight + 5;
         float actualX = Random.Range(minX, maxX);
 
-        pos.x = screenRight + 30;
+        pos.x = actualX + goCollider.size.x / 2;
         go.transform.position = pos;
 
         Ground goGround = go.GetComponent<Ground>();
