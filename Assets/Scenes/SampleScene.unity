@@ -531,6 +531,13 @@ MonoBehaviour:
   maxMaxHoldJumpTime: 0.4
   holdJumpTimer: 0
   jumpGroundThreshold: 3
+  isDead: 0
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  minionLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &678176685
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +739,7 @@ GameObject:
   - component: {fileID: 757320293}
   - component: {fileID: 757320292}
   - component: {fileID: 757320294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
