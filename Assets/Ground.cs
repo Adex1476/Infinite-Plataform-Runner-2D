@@ -73,8 +73,8 @@ public class Ground : MonoBehaviour
         float actualY = Random.Range(minY, maxY); //- goCollider.size.y / 2;
 
         pos.y = actualY - goCollider.size.y / 2;
-        if (pos.y > 2.7f)
-            pos.y = 2.7f;
+        if (pos.y > 1.7f)
+            pos.y = 1.7f;
 
         float t1 = t + player.maxHoldJumpTime;
         float t2 = Mathf.Sqrt((2.0f * (maxY - actualY)) / -player.gravity);
