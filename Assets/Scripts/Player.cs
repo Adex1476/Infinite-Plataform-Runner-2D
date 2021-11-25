@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
 
     public float jumpGroundThreshold = 1;
 
+    public int health;
     public bool isDead = false;
 
     //Animator
@@ -36,7 +39,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 1; 
     }
 
     // Update is called once per frame
@@ -134,12 +137,14 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
-                Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
 
                 //Colision horizontal
                 Vector2 wallOrigin = new Vector2(pos.x, pos.y);
                 Vector2 wallDir = Vector2.right;
                 RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
+                Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
+
+
                 if (wallHit.collider != null)
                 {
                     Ground ground = wallHit.collider.GetComponent<Ground>();
@@ -151,6 +156,20 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
+            }
+
+            //Colision enemy
+            Vector2 playerOrigin = new Vector2(transform.position.x - 3, transform.position.y - 2);
+            Vector2 playerDir = Vector2.right;
+            float playerRayDistance = 6;
+            RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance * Time.fixedDeltaTime, minionLayerMask);
+            Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
+
+            if (playerHit.collider != null)
+            {
+                health--;
+                Destroy(playerHit.collider.gameObject);
+                checkIfDead();
             }
 
             distance += velocity.x * Time.fixedDeltaTime;
@@ -183,4 +202,32 @@ public class Player : MonoBehaviour
             transform.position = pos;
         }
     }
+
+    private void checkIfDead()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            isDead = true;
+        }
+    }
+    /*
+private void OnTriggerEnter2D(Collider2D collision)
+{
+   if (collision.CompareTag("EnemyTest"))
+   {
+       health--;
+       Destroy(gameObject);
+       if (health == 0)
+       {
+           Destroy(collision.gameObject);
+           isDead = true;
+       }
+   }
+   if (collision.CompareTag("Player"))
+   {
+       Destroy(this.gameObject);
+       isDead = true;
+   }
+}*/
 }
