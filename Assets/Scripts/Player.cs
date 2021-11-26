@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
 ﻿using System;
-=======
->>>>>>> Stashed changes
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -78,7 +75,6 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                
                 isStarted = true;
             }
         }
