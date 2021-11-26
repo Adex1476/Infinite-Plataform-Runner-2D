@@ -33,27 +33,30 @@ public class Ground : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 pos = transform.position;
-        pos.x -= player.velocity.x * Time.fixedDeltaTime;
+        if (!player.isDead)
+        {
+            Vector2 pos = transform.position;
+            pos.x -= player.velocity.x * Time.fixedDeltaTime;
 
 
-        groundRight = transform.position.x + (collider.size.x / 2);
-        if (groundRight < 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        
-        if (!didGenerateGround)
-        {
-            if (groundRight < screenRight)
+            groundRight = transform.position.x + (collider.size.x / 2);
+            if (groundRight < 0)
             {
-                didGenerateGround = true;
-                generateGround();
+                Destroy(gameObject);
+                return;
             }
-        }
 
-        transform.position = pos;
+            if (!didGenerateGround)
+            {
+                if (groundRight < screenRight)
+                {
+                    didGenerateGround = true;
+                    generateGround();
+                }
+            }
+
+            transform.position = pos;
+        }
     }
 
     void generateGround()
