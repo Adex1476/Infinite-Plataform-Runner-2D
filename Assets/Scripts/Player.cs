@@ -122,11 +122,12 @@ public class Player : MonoBehaviour
                 }
                 animator.SetFloat("VelocityY", velocity.y);
 
-                //Caiguda
+                //Caiguda collisio vertical
                 Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
                 Vector2 rayDirection = Vector2.up;
                 float rayDistance = velocity.y * Time.fixedDeltaTime;
                 RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance, groundLayerMask);
+                Debug.DrawRay(rayOrigin, rayDirection * -10, Color.blue);
                 if (hit2D.collider != null)
                 {
                     Ground ground = hit2D.collider.GetComponent<Ground>();
