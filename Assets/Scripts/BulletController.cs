@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
     
     public Vector3 clickDirecction;
 
-    private float speed = 25;
+    private float speed = 10;
 
     [SerializeField]
     private LayerMask minionLayerMask;
