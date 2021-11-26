@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
                 Vector2 wallOrigin = new Vector2(pos.x, pos.y);
                 Vector2 wallDir = Vector2.right;
                 RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
-                Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
+                Debug.DrawRay(wallOrigin, wallDir * velocity.x * Time.fixedDeltaTime, Color.red);
 
 
                 if (wallHit.collider != null)
@@ -160,15 +160,16 @@ public class Player : MonoBehaviour
             }
 
             //Colision enemy
-            Vector2 playerOrigin = new Vector2(transform.position.x - 3, transform.position.y - 2);
+            Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y);
             Vector2 playerDir = Vector2.right;
-            float playerRayDistance = 6;
-            RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance * Time.fixedDeltaTime, minionLayerMask);
+            float playerRayDistance = velocity.x * Time.fixedDeltaTime;
+            RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
             Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
 
             if (playerHit.collider != null)
             {
                 //Set hurt animation
+                velocity.x = velocity.x - velocity.x * 0.8f;
                 health--;
                 Destroy(playerHit.collider.gameObject);
                 checkIfDead();
