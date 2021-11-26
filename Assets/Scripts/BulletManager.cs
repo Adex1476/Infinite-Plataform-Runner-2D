@@ -7,13 +7,16 @@ public class BulletManager : MonoBehaviour
     public GameObject bullet;
 
     public GameObject player;
+    
     public Player dataPlayer;
+    
     public Vector3 clickPosition;
+    
     public Vector3 clickDirection;
+    
     private Vector3 playerPosition;
-    //public float speed=2;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         //playerPosition = player.transform.position;
         //Instantiate(bullet, playerPosition, Quaternion.identity);
@@ -23,30 +26,26 @@ public class BulletManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dataPlayer.isDead)
+/*        clickDirection = new Vector3(0, 0, 0);
+*/        if (!dataPlayer.isDead)
         {
             playerPosition = player.transform.position;
-            //playerPosition.y -= 3;
 
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(bullet, playerPosition, Quaternion.identity);
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                clickPosition = new Vector3(ray.origin.x, ray.origin.y, ray.origin.z);
+                //Point = camera Screen Point
+                var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
+                
+                clickPosition = new Vector3(screenPoint.origin.x, screenPoint.origin.y, screenPoint.origin.z);
+               
                 clickDirection = (clickPosition - playerPosition).normalized;
-                Debug.Log(clickDirection);
 
+                if (clickDirection.x > 0)
+                {
+                    Instantiate(bullet, playerPosition, Quaternion.identity);
+                    //player.GetComponentInParent<Animator>().SetBool("shooting", true);
+                }
             }
-        }
-        //Vector3 bulletPosition = transform.position;
-        
-        //bullet.transform.position = Vector3.MoveTowards(playerPosition,clickPosition,speed * Time.fixedDeltaTime);
-
-/*        if(playerPosition == clickPosition){
-            Destroy(bullet);
-        }*/
-        
+        }  
     }
-   
 }

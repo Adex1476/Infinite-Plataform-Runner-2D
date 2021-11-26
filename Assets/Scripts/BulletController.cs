@@ -8,11 +8,14 @@ public class BulletController : MonoBehaviour
     
     public Vector3 clickDirecction;
 
-    private float speed = 5;
+    private float speed = 10;
 
+    [SerializeField]
+    private LayerMask minionLayerMask;
+    
     private Camera mainCamera;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         bulletManager = GameObject.Find("BulletManager").GetComponent<BulletManager>();
         clickDirecction = bulletManager.clickDirection;
@@ -26,9 +29,16 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         //Vector3 bulletPosition = gameObject.transform.position;
-        gameObject.transform.position +=  clickDirecction * speed * Time.fixedDeltaTime; 
+        //Position = Position + vector / magnitud del vector * velocitat
+        gameObject.transform.position +=  clickDirecction / clickDirecction.magnitude * speed * Time.fixedDeltaTime;
         //
+        Debug.DrawRay(transform.position, clickDirecction * 10, Color.green);
 
-         //= bulletPosition;
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, clickDirecction * 10, speed * Time.fixedDeltaTime, minionLayerMask);
+        if (raycastHit2D.collider != null)
+        {
+            Destroy(raycastHit2D.collider.gameObject);
+        }
+        //= bulletPosition;
     }
 }

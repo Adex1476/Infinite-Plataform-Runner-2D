@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 1; 
+        health = 2; 
     }
 
     // Update is called once per frame
@@ -168,6 +168,7 @@ public class Player : MonoBehaviour
 
             if (playerHit.collider != null)
             {
+                //Set hurt animation
                 health--;
                 Destroy(playerHit.collider.gameObject);
                 checkIfDead();
@@ -212,23 +213,4 @@ public class Player : MonoBehaviour
             isDead = true;
         }
     }
-    /*
-private void OnTriggerEnter2D(Collider2D collision)
-{
-   if (collision.CompareTag("EnemyTest"))
-   {
-       health--;
-       Destroy(gameObject);
-       if (health == 0)
-       {
-           Destroy(collision.gameObject);
-           isDead = true;
-       }
-   }
-   if (collision.CompareTag("Player"))
-   {
-       Destroy(this.gameObject);
-       isDead = true;
-   }
-}*/
 }

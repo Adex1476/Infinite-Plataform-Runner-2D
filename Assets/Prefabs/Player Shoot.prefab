@@ -117,3 +117,6 @@ MonoBehaviour:
   bulletManager: {fileID: 8860968351287493560, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
     type: 3}
   clickDirecction: {x: 0, y: 0, z: 0}
+  minionLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
