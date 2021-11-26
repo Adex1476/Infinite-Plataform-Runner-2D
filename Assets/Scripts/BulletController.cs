@@ -19,7 +19,7 @@ public class BulletController : MonoBehaviour
         clickDirecction = new Vector3(clickDirecction.x, clickDirecction.y, 0);
         mainCamera = Camera.main;
         //transform.rotation = Quaternion.LookRotation(, Vector3.up); ;
-        //transform.rotation = clickDirecction;
+        transform.right = clickDirecction;
     }
 
     // Update is called once per frame
