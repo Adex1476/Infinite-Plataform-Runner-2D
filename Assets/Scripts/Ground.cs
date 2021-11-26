@@ -12,6 +12,8 @@ public class Ground : MonoBehaviour
     BoxCollider2D collider;
 
     bool didGenerateGround = false;
+
+    public GameObject minion;
     
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class Ground : MonoBehaviour
             if (groundRight < 0)
             {
                 Destroy(gameObject);
-                return;
+                //return;
             }
 
             if (!didGenerateGround)
@@ -68,7 +70,7 @@ public class Ground : MonoBehaviour
         //Maximum high
         float h1 = player.jumpVelocity * player.maxHoldJumpTime / 2;
         float t = player.jumpVelocity / -player.gravity;
-        float h2 = player.jumpVelocity * t + (0.5f * ( - player.gravity * (t * t)));
+        float h2 = player.jumpVelocity * t + (0.5f * ( player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
         float maxY = maxJumpHeight * 0.3f;
         maxY += groundHeight;
@@ -93,5 +95,7 @@ public class Ground : MonoBehaviour
 
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
+
+        Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
     }
 }
