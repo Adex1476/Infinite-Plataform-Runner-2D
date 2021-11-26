@@ -95,7 +95,19 @@ public class Ground : MonoBehaviour
 
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
+<<<<<<< Updated upstream
 
         Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
+=======
+<<<<<<< Updated upstream
+=======
+
+<<<<<<< HEAD
+        //Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
+=======
+        Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
+>>>>>>> dev
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 }
