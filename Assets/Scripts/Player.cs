@@ -29,7 +29,11 @@ public class Player : MonoBehaviour
     //Animator
     public Animator animator;
 
-    //BugFix
+    //Camera
+    public Camera playerCamera;
+    private float initialCameraSize;
+
+    //LayerMasks
     public LayerMask groundLayerMask;
     public LayerMask minionLayerMask;
 
@@ -39,7 +43,11 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 2; 
+        health = 2;
+
+        playerCamera = Camera.main;
+
+        initialCameraSize = playerCamera.orthographicSize;
     }
 
     // Update is called once per frame
@@ -62,6 +70,7 @@ public class Player : MonoBehaviour
                 }
 
             }
+
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 isHoldingJump = false;
@@ -71,6 +80,8 @@ public class Player : MonoBehaviour
             animator.SetFloat("VelocityY", velocity.y);
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("VelocityX", velocity.x);
+
+            
         } else
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -92,9 +103,27 @@ public class Player : MonoBehaviour
                 return;
             }
 
+            //Player moviemnt eix Y
             if (pos.y < -20)
             {
                 isDead = true;
+            }
+            else if (pos.y > 25)
+            {
+                Vector3 cameraPos = playerCamera.transform.position;
+                Debug.DrawLine(pos, new Vector2(pos.x * 2, pos.y));
+                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y -10, cameraPos.z);
+                
+            } 
+            else if (!isDead && isGrounded)
+            {
+                playerCamera.orthographicSize = initialCameraSize + (velocity.x * 12) / maxXVelocity;
+
+                //WIP: Player moving back while camera incresing size
+                if (pos.x > playerCamera.transform.position.x - playerCamera.orthographicSize)
+                {
+                    pos.x -= velocity.x * 0.25f * Time.fixedDeltaTime;
+                }
             }
 
             //Salt
@@ -169,7 +198,7 @@ public class Player : MonoBehaviour
             if (playerHit.collider != null)
             {
                 //Set hurt animation
-                velocity.x = velocity.x - velocity.x * 0.8f;
+                velocity.x -= velocity.x * 0.1f;
                 health--;
                 Destroy(playerHit.collider.gameObject);
                 checkIfDead();
@@ -201,6 +230,10 @@ public class Player : MonoBehaviour
                 }
                 Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
             }
+
+            animator.SetFloat("VelocityY", velocity.y);
+            animator.SetBool("isGrounded", isGrounded);
+            animator.SetFloat("VelocityX", velocity.x);
 
             transform.position = pos;
         }

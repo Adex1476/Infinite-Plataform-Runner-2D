@@ -18,7 +18,11 @@ public class Ground : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        collider = GetComponent<BoxCollider2D>();
+        if (!player.isDead)
+        {
+
+            collider = GetComponent<BoxCollider2D>();
+        }
         groundHeight = transform.position.y + (collider.size.y / 2);
         screenRight = Camera.main.transform.position.x * 2;
     }
@@ -42,7 +46,7 @@ public class Ground : MonoBehaviour
 
 
             groundRight = transform.position.x + (collider.size.x / 2);
-            if (groundRight < 0)
+            if (groundRight < -40)
             {
                 Destroy(gameObject);
                 //return;
@@ -96,7 +100,18 @@ public class Ground : MonoBehaviour
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
 
-        var minionInstantce = Instantiate(minion, new Vector2(pos.x, goGround.groundHeight), Quaternion.identity);
-        minionInstantce.transform.parent = go.transform;
+
+        float minionNum = Random.Range(0, 3);
+        for (int i=0; i< minionNum; i++)
+        {
+            GameObject goMinion = Instantiate(minion);
+            float y = goGround.groundHeight;
+            float halfWidth = goCollider.size.x / 2 - 1;
+            float left = go.transform.position.x - halfWidth;
+            float right = go.transform.position.x + halfWidth;
+            float x = Random.Range(left, right);
+            Vector2 minionPos = new Vector2(x, y);
+            goMinion.transform.position = minionPos;
+        }
     }
 }

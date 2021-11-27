@@ -10,11 +10,11 @@ public class BulletManager : MonoBehaviour
     
     public Player dataPlayer;
     
-    public Vector3 clickPosition;
+    public Vector2 clickPosition;
     
-    public Vector3 clickDirection;
+    public Vector2 clickDirection;
     
-    private Vector3 playerPosition;
+    private Vector2 playerPosition;
 
     void Awake()
     {
@@ -36,7 +36,7 @@ public class BulletManager : MonoBehaviour
                 //Point = camera Screen Point
                 var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
                 
-                clickPosition = new Vector3(screenPoint.origin.x, screenPoint.origin.y, screenPoint.origin.z);
+                clickPosition = new Vector2(screenPoint.origin.x, screenPoint.origin.y);
                
                 clickDirection = (clickPosition - playerPosition).normalized;
 
