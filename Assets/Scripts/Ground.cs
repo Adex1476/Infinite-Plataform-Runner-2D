@@ -70,7 +70,7 @@ public class Ground : MonoBehaviour
         //Maximum high
         float h1 = player.jumpVelocity * player.maxHoldJumpTime / 2;
         float t = player.jumpVelocity / -player.gravity;
-        float h2 = player.jumpVelocity * t + (0.5f * ( player.gravity * (t * t)));
+        float h2 = player.jumpVelocity * t + (0.5f * (player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
         float maxY = maxJumpHeight * 0.3f;
         maxY += groundHeight;
@@ -86,28 +86,17 @@ public class Ground : MonoBehaviour
         float totalTime = t1 + t2;
         float maxX = totalTime * player.velocity.x;
         maxX *= 0.7f;
-        maxX += groundRight; 
+        maxX += groundRight;
         float minX = screenRight + 5;
         float actualX = Random.Range(minX, maxX);
 
-        pos.x = actualX + goCollider.size.x / 2;    
+        pos.x = actualX + goCollider.size.x / 2;
         go.transform.position = pos;
 
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
-<<<<<<< Updated upstream
 
-        Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
-=======
-<<<<<<< Updated upstream
-=======
-
-<<<<<<< HEAD
-        //Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
-=======
-        Instantiate(minion, new Vector2(pos.x, groundHeight), Quaternion.identity);
->>>>>>> dev
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+        var minionInstantce = Instantiate(minion, new Vector2(pos.x, goGround.groundHeight), Quaternion.identity);
+        minionInstantce.transform.parent = go.transform;
     }
 }
