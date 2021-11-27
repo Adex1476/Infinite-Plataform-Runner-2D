@@ -118,12 +118,11 @@ public class Player : MonoBehaviour
             else if (!isDead && isGrounded)
             {
                 playerCamera.orthographicSize = initialCameraSize + (velocity.x * 12) / maxXVelocity;
-
-                //WIP: Player moving back while camera incresing size
-                if (pos.x > playerCamera.transform.position.x - playerCamera.orthographicSize)
-                {
-                    pos.x -= velocity.x * 0.25f * Time.fixedDeltaTime;
-                }
+            }
+            //WIP: Player moving back while camera incresing size
+            if (pos.x > playerCamera.transform.position.x - playerCamera.orthographicSize)
+            {
+                pos.x -= velocity.x * 0.25f * Time.fixedDeltaTime;
             }
 
             //Salt
