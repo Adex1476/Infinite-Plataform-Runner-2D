@@ -108,12 +108,11 @@ public class Player : MonoBehaviour
             {
                 isDead = true;
             }
-            else if (pos.y > 25)
+            else if (pos.y >= 25)
             {
                 Vector3 cameraPos = playerCamera.transform.position;
                 Debug.DrawLine(pos, new Vector2(pos.x * 2, pos.y));
-                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y -10, cameraPos.z);
-                
+                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y -10    , cameraPos.z);
             } 
             else if (!isDead && isGrounded)
             {
