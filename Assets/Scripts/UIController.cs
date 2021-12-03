@@ -44,8 +44,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void Retry ()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
+    public void Retry () => SceneManager.LoadScene("GameScene");
+    
+    public void Exit () => SceneManager.LoadScene("MainMenu");
 }
