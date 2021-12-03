@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -21,12 +23,17 @@ public class Player : MonoBehaviour
 
     public float jumpGroundThreshold = 1;
 
+    public int health;
     public bool isDead = false;
 
     //Animator
     public Animator animator;
 
-    //BugFix
+    //Camera
+    public Camera playerCamera;
+    private float initialCameraSize;
+
+    //LayerMasks
     public LayerMask groundLayerMask;
     public LayerMask minionLayerMask;
 
@@ -36,7 +43,11 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 2;
+
+        playerCamera = Camera.main;
+
+        initialCameraSize = playerCamera.orthographicSize;
     }
 
     // Update is called once per frame
@@ -59,6 +70,7 @@ public class Player : MonoBehaviour
                 }
 
             }
+
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 isHoldingJump = false;
@@ -68,6 +80,8 @@ public class Player : MonoBehaviour
             animator.SetFloat("VelocityY", velocity.y);
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("VelocityX", velocity.x);
+
+            
         } else
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -89,9 +103,25 @@ public class Player : MonoBehaviour
                 return;
             }
 
+            //Player moviemnt eix Y
             if (pos.y < -20)
             {
                 isDead = true;
+            }
+            else if (pos.y >= 25)
+            {
+                Vector3 cameraPos = playerCamera.transform.position;
+                Debug.DrawLine(pos, new Vector2(pos.x * 2, pos.y));
+                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y -10    , cameraPos.z);
+            } 
+            else if (!isDead && isGrounded)
+            {
+                playerCamera.orthographicSize = initialCameraSize + (velocity.x * 12) / maxXVelocity;
+            }
+            //WIP: Player moving back while camera incresing size
+            if (pos.x > playerCamera.transform.position.x - playerCamera.orthographicSize)
+            {
+                pos.x -= velocity.x * 0.25f * Time.fixedDeltaTime;
             }
 
             //Salt
@@ -115,11 +145,12 @@ public class Player : MonoBehaviour
                 }
                 animator.SetFloat("VelocityY", velocity.y);
 
-                //Caiguda
+                //Caiguda collisio vertical
                 Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
                 Vector2 rayDirection = Vector2.up;
                 float rayDistance = velocity.y * Time.fixedDeltaTime;
                 RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance, groundLayerMask);
+                Debug.DrawRay(rayOrigin, rayDirection * -10, Color.blue);
                 if (hit2D.collider != null)
                 {
                     Ground ground = hit2D.collider.GetComponent<Ground>();
@@ -134,12 +165,14 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
-                Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
 
                 //Colision horizontal
                 Vector2 wallOrigin = new Vector2(pos.x, pos.y);
                 Vector2 wallDir = Vector2.right;
                 RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
+                Debug.DrawRay(wallOrigin, wallDir * velocity.x * Time.fixedDeltaTime, Color.red);
+
+
                 if (wallHit.collider != null)
                 {
                     Ground ground = wallHit.collider.GetComponent<Ground>();
@@ -151,6 +184,22 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
+            }
+
+            //Colision enemy
+            Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y);
+            Vector2 playerDir = Vector2.right;
+            float playerRayDistance = velocity.x * Time.fixedDeltaTime;
+            RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+            Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
+
+            if (playerHit.collider != null)
+            {
+                //Set hurt animation
+                velocity.x -= velocity.x * 0.1f;
+                health--;
+                Destroy(playerHit.collider.gameObject);
+                checkIfDead();
             }
 
             distance += velocity.x * Time.fixedDeltaTime;
@@ -180,7 +229,20 @@ public class Player : MonoBehaviour
                 Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
             }
 
+            animator.SetFloat("VelocityY", velocity.y);
+            animator.SetBool("isGrounded", isGrounded);
+            animator.SetFloat("VelocityX", velocity.x);
+
             transform.position = pos;
+        }
+    }
+
+    private void checkIfDead()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            isDead = true;
         }
     }
 }

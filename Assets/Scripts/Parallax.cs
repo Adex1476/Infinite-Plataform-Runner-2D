@@ -21,19 +21,21 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Adapta la velocitat segons la velocitat del player i la profunditat de la capa.
-        float realVelocity = player.velocity.x / depth;
+        if (!player.isDead)
+        {
+            //Adapta la velocitat segons la velocitat del player i la profunditat de la capa.
+            float realVelocity = player.velocity.x / depth;
 
-        //Transforma la posicio del background
-        Vector2 pos = transform.position;
+            //Transforma la posicio del background
+            Vector2 pos = transform.position;
 
-        pos.x -= realVelocity/2 * Time.fixedDeltaTime;
+            pos.x -= realVelocity / 2 * Time.fixedDeltaTime;
 
-        if (pos.x <= -100)
-            pos.x = 98;
+            if (pos.x <= -100)
+                pos.x = 98;
 
-        transform.position = pos;
-
+            transform.position = pos;
+        }
         
     }
 }
