@@ -7,13 +7,14 @@ public class Ground : MonoBehaviour
     Player player;
 
     public float groundHeight;
-    public float groundRight;
-    public float screenRight;
+    private float groundRight;
+    private float screenRight;
     BoxCollider2D collider;
 
     bool didGenerateGround = false;
 
-    public GameObject minion;
+    [SerializeField]
+    private GameObject minion;
     
     private void Awake()
     {

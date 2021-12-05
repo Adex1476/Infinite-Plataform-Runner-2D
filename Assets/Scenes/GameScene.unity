@@ -651,8 +651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundHeight: 0
-  groundRight: 0
-  screenRight: 0
   minion: {fileID: 9187072555623492258, guid: 22571cad71d579045b93b6ee2430e873, type: 3}
 --- !u!4 &757320293
 Transform:
@@ -2269,7 +2267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &2054411936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2280,7 +2278,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7d4baa5559c7bcd4aa627788cfb62f99, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
