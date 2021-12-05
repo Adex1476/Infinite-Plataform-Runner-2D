@@ -1,43 +1,68 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     public float gravity;
     public Vector2 velocity;
-    public float maxXVelocity = 100;
-    public float maxAcceleration = 10;
-    public float acceleration = 10;
+
+    [SerializeField]
+    private float maxXVelocity = 100;
+
+    [SerializeField]
+    private float maxAcceleration = 10;
+
+    [SerializeField]
+    private float acceleration = 10;
     public float distance = 0;
     public float jumpVelocity = 20;
-    public float groundHeight = 10;
-    public bool isGrounded = false;
 
-    public bool isHoldingJump = false;
+    [SerializeField]
+    private float groundHeight = 10;
+
+    [SerializeField]
+    private bool isGrounded = false;
+
+
+    [SerializeField]
+    private bool isHoldingJump = false;
     public float maxHoldJumpTime = 0.4f;
-    public float maxMaxHoldJumpTime = 0.4f;
-    public float holdJumpTimer = 0.0f;
 
-    public float jumpGroundThreshold = 1;
+    [SerializeField]
+    private float maxMaxHoldJumpTime = 0.4f;
+
+    [SerializeField]
+    private float holdJumpTimer = 0.0f;
+
+
+    [SerializeField]
+    private float jumpGroundThreshold = 1;
 
     public int health;
     public bool isDead = false;
 
     //Animator
-    public Animator animator;
+
+    [SerializeField]
+    private Animator animator;
 
     //Camera
     public Camera playerCamera;
+
+    [SerializeField]
     private float initialCameraSize;
 
     //LayerMasks
-    public LayerMask groundLayerMask;
-    public LayerMask minionLayerMask;
 
-    public bool isStarted = false;
+    [SerializeField]
+    private LayerMask groundLayerMask;
+
+    [SerializeField]
+    private LayerMask minionLayerMask;
+
+
+    [SerializeField]
+    private bool isStarted = false;
 
 
     // Start is called before the first frame update
@@ -81,8 +106,9 @@ public class Player : MonoBehaviour
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("VelocityX", velocity.x);
 
-            
-        } else
+
+        }
+        else
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -112,8 +138,8 @@ public class Player : MonoBehaviour
             {
                 Vector3 cameraPos = playerCamera.transform.position;
                 Debug.DrawLine(pos, new Vector2(pos.x * 2, pos.y));
-                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y -10    , cameraPos.z);
-            } 
+                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y - 10, cameraPos.z);
+            }
             else if (!isDead && isGrounded)
             {
                 playerCamera.orthographicSize = initialCameraSize + (velocity.x * 12) / maxXVelocity;
@@ -165,25 +191,7 @@ public class Player : MonoBehaviour
                         }
                     }
                 }
-
-                //Colision horizontal
-                Vector2 wallOrigin = new Vector2(pos.x, pos.y);
-                Vector2 wallDir = Vector2.right;
-                RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
-                Debug.DrawRay(wallOrigin, wallDir * velocity.x * Time.fixedDeltaTime, Color.red);
-
-
-                if (wallHit.collider != null)
-                {
-                    Ground ground = wallHit.collider.GetComponent<Ground>();
-                    if (ground != null)
-                    {
-                        if (pos.y < ground.groundHeight)
-                        {
-                            velocity.x = 0;
-                        }
-                    }
-                }
+                //Coll horiztonal
             }
 
             //Colision enemy
@@ -227,6 +235,24 @@ public class Player : MonoBehaviour
                     isGrounded = false;
                 }
                 Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
+            }
+            //Colision horizontal
+            Vector2 wallOrigin = new Vector2(pos.x, pos.y);
+            Vector2 wallDir = Vector2.right;
+            RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
+            Debug.DrawRay(wallOrigin, wallDir * velocity.x * Time.fixedDeltaTime, Color.red);
+
+
+            if (wallHit.collider != null)
+            {
+                Ground ground = wallHit.collider.GetComponent<Ground>();
+                if (ground != null)
+                {
+                    if (pos.y < ground.groundHeight)
+                    {
+                        velocity.x = 0;
+                    }
+                }
             }
 
             animator.SetFloat("VelocityY", velocity.y);

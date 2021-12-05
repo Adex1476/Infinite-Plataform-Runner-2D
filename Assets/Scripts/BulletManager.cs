@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    public GameObject bullet;
+    [SerializeField]
+    private GameObject bullet;
 
-    public GameObject player;
+    [SerializeField]
+    private GameObject player;
     
-    public Player dataPlayer;
-    
-    public Vector2 clickPosition;
+    [SerializeField]
+    private Player dataPlayer;
+
+    [SerializeField]
+    private Vector2 clickPosition;
     
     public Vector2 clickDirection;
     
