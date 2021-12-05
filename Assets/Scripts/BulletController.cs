@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public BulletManager bulletManager;
+    private BulletManager bulletManager;
     
     private Vector3 clickDirecction;
 

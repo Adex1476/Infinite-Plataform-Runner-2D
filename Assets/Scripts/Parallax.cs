@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    public float depth = 1;
+    [SerializeField]
+    private float depth = 1;
 
     Player player;
 
