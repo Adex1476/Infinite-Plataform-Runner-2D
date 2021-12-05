@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -80,33 +81,9 @@ public class Player : MonoBehaviour
     {
         if (isStarted)
         {
-            Vector2 pos = transform.position;
-            float groundDistance = Mathf.Abs(pos.y - groundHeight);
+            JumpingInput();
 
-            if (isGrounded || groundDistance <= jumpGroundThreshold)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    isGrounded = false;
-                    velocity.y = jumpVelocity;
-                    isHoldingJump = true;
-                    holdJumpTimer = 0;
-                    Debug.Log("KEY_DOWN");
-                }
-
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                isHoldingJump = false;
-                Debug.Log("KEY_RELEASE");
-            }
-
-            animator.SetFloat("VelocityY", velocity.y);
-            animator.SetBool("isGrounded", isGrounded);
-            animator.SetFloat("VelocityX", velocity.x);
-
-
+            SetAnimation();
         }
         else
         {
@@ -124,95 +101,29 @@ public class Player : MonoBehaviour
 
             Vector2 pos = transform.position;
 
-            if (isDead)
-            {
-                return;
-            }
+            CheckPlayerDeath();
 
             //Player moviemnt eix Y
-            if (pos.y < -20)
-            {
-                isDead = true;
-            }
-            else if (pos.y >= 25)
-            {
-                Vector3 cameraPos = playerCamera.transform.position;
-                Debug.DrawLine(pos, new Vector2(pos.x * 2, pos.y));
-                playerCamera.transform.position = new Vector3(cameraPos.x, pos.y - 10, cameraPos.z);
-            }
-            else if (!isDead && isGrounded)
-            {
-                playerCamera.orthographicSize = initialCameraSize + (velocity.x * 12) / maxXVelocity;
-            }
+            CheckFallDeath(pos);
+
+            CameraHeight(pos);
+
+            IncreaseCameraSize();
+
             //WIP: Player moving back while camera incresing size
-            if (pos.x > playerCamera.transform.position.x - playerCamera.orthographicSize)
-            {
-                pos.x -= velocity.x * 0.25f * Time.fixedDeltaTime;
-            }
+            pos.x -= MovePlayerInsideCamera(pos);
 
             //Salt
-            if (!isGrounded)
-            {
-                if (isHoldingJump)
-                {
-                    holdJumpTimer += Time.fixedDeltaTime;
-                    if (holdJumpTimer >= maxHoldJumpTime)
-                    {
-                        isHoldingJump = false;
-                    }
-                }
-                pos.y += velocity.y * Time.fixedDeltaTime;
-
-
-                //La gravetat afecta quan no tapejem
-                if (!isHoldingJump)
-                {
-                    velocity.y += gravity * Time.fixedDeltaTime;
-                }
-                animator.SetFloat("VelocityY", velocity.y);
-
-                //Caiguda collisio vertical
-                Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
-                Vector2 rayDirection = Vector2.up;
-                float rayDistance = velocity.y * Time.fixedDeltaTime;
-                RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance, groundLayerMask);
-                Debug.DrawRay(rayOrigin, rayDirection * -10, Color.blue);
-                if (hit2D.collider != null)
-                {
-                    Ground ground = hit2D.collider.GetComponent<Ground>();
-                    if (ground != null)
-                    {
-                        if (pos.y >= ground.groundHeight)
-                        {
-                            groundHeight = ground.groundHeight;
-                            pos.y = groundHeight;
-                            velocity.y = 0;
-                            isGrounded = true;
-                        }
-                    }
-                }
-                //Coll horiztonal
-            }
+            pos.y = JumpMovement(pos);
 
             //Colision enemy
-            Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y);
-            Vector2 playerDir = Vector2.right;
-            float playerRayDistance = velocity.x * Time.fixedDeltaTime;
-            RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
-            Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
+            CheckEnemyCollision();
 
-            if (playerHit.collider != null)
-            {
-                //Set hurt animation
-                velocity.x -= velocity.x * 0.1f;
-                health--;
-                Destroy(playerHit.collider.gameObject);
-                checkIfDead();
-            }
+
+            //Correr
 
             distance += velocity.x * Time.fixedDeltaTime;
 
-            //Correr
             if (isGrounded)
             {
                 float velocityRatio = velocity.x / maxXVelocity;
@@ -255,15 +166,167 @@ public class Player : MonoBehaviour
                 }
             }
 
-            animator.SetFloat("VelocityY", velocity.y);
-            animator.SetBool("isGrounded", isGrounded);
-            animator.SetFloat("VelocityX", velocity.x);
+            SetAnimation();
 
             transform.position = pos;
         }
     }
 
-    private void checkIfDead()
+    private float JumpMovement(Vector2 pos)
+    {
+        if (!isGrounded)
+        {
+            HoldingJump();
+
+            pos.y += velocity.y * Time.fixedDeltaTime;
+
+            //La gravetat afecta quan no tapejem
+            notHoldingJump();
+
+            //Caiguda collisio vertical
+            return VerticalGroundCollision(pos);
+        }
+        return pos.y;
+    }
+
+    private void CheckEnemyCollision()
+    {
+        Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y);
+        Vector2 playerDir = Vector2.right;
+        float playerRayDistance = velocity.x * Time.fixedDeltaTime;
+        RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
+
+        if (playerHit.collider != null)
+        {
+            //Set hurt animation
+            velocity.x -= velocity.x * 0.1f;
+            health--;
+            Destroy(playerHit.collider.gameObject);
+            CheckifDead();
+        }
+    }
+
+    private float VerticalGroundCollision(Vector2 pos)
+    {
+        Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
+        Vector2 rayDirection = Vector2.up;
+        float rayDistance = velocity.y * Time.fixedDeltaTime;
+        RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance, groundLayerMask);
+        Debug.DrawRay(rayOrigin, rayDirection * -10, Color.blue);
+        if (hit2D.collider != null)
+        {
+            Ground ground = hit2D.collider.GetComponent<Ground>();
+            if (ground != null)
+            {
+                if (pos.y >= ground.groundHeight)
+                {
+                    groundHeight = ground.groundHeight;
+                    velocity.y = 0;
+                    isGrounded = true;
+                    return groundHeight;
+                }
+            }
+        }
+        return pos.y;
+    }
+
+    private void notHoldingJump()
+    {
+        if (!isHoldingJump)
+        {
+            velocity.y += gravity * Time.fixedDeltaTime;
+        }
+        animator.SetFloat("VelocityY", velocity.y);
+    }
+
+    private void HoldingJump()
+    {
+        if (isHoldingJump)
+        {
+            holdJumpTimer += Time.fixedDeltaTime;
+            if (holdJumpTimer >= maxHoldJumpTime)
+            {
+                isHoldingJump = false;
+            }
+        }
+    }
+
+    private float MovePlayerInsideCamera(Vector2 pos)
+    {
+        if (pos.x > playerCamera.transform.position.x - playerCamera.orthographicSize)
+        {
+            return velocity.x * 0.25f * Time.fixedDeltaTime;
+        }
+        return 0;
+    }
+
+    private void IncreaseCameraSize()
+    {
+        if (!isDead && isGrounded)
+        {
+            playerCamera.orthographicSize = initialCameraSize + (velocity.x * 12) / maxXVelocity;
+        }
+    }
+
+    private void CameraHeight(Vector2 pos)
+    {
+        if (pos.y >= 25)
+        {
+            Vector3 cameraPos = playerCamera.transform.position;
+            Debug.DrawLine(pos, new Vector2(pos.x * 2, pos.y));
+            playerCamera.transform.position = new Vector3(cameraPos.x, pos.y - 10, cameraPos.z);
+        }
+    }
+
+    private void CheckPlayerDeath()
+    {
+        if (isDead)
+        {
+            return;
+        }
+    }
+    
+    private void CheckFallDeath(Vector2 pos)
+    {
+        if (pos.y < -20)
+        {
+            isDead = true;
+        }
+    }
+
+    private void JumpingInput()
+    {
+        Vector2 pos = transform.position;
+        float groundDistance = Mathf.Abs(pos.y - groundHeight);
+
+        if (isGrounded || groundDistance <= jumpGroundThreshold)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isGrounded = false;
+                velocity.y = jumpVelocity;
+                isHoldingJump = true;
+                holdJumpTimer = 0;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isHoldingJump = false;
+        }
+    }
+
+
+    private void SetAnimation()
+    {
+        animator.SetFloat("VelocityY", velocity.y);
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("VelocityX", velocity.x);
+    }
+
+
+    private void CheckifDead()
     {
         if (health <= 0)
         {
