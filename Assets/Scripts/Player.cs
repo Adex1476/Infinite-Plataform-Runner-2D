@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
 
     public float gravity;
+    
     public Vector2 velocity;
 
     [SerializeField]
@@ -15,7 +16,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float acceleration = 10;
+    
     public float distance = 0;
+   
     public float jumpVelocity = 20;
 
     [SerializeField]
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool isHoldingJump = false;
+    
     public float maxHoldJumpTime = 0.4f;
 
     [SerializeField]
@@ -35,11 +39,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float holdJumpTimer = 0.0f;
 
-
     [SerializeField]
     private float jumpGroundThreshold = 1;
 
     public int health;
+    
     public bool isDead = false;
 
     //Animator
@@ -83,7 +87,7 @@ public class Player : MonoBehaviour
         {
             JumpingInput();
 
-            SetAnimation();
+            //SetAnimation();
         }
         else
         {
@@ -98,7 +102,6 @@ public class Player : MonoBehaviour
     {
         if (isStarted)
         {
-
             Vector2 pos = transform.position;
 
             CheckPlayerDeath();
@@ -119,57 +122,74 @@ public class Player : MonoBehaviour
             //Colision enemy
             CheckEnemyCollision();
 
-
             //Correr
+            IcreaseDistance();
 
-            distance += velocity.x * Time.fixedDeltaTime;
-
-            if (isGrounded)
-            {
-                float velocityRatio = velocity.x / maxXVelocity;
-                acceleration = maxAcceleration * (1 - velocityRatio);
-                maxHoldJumpTime = maxMaxHoldJumpTime * velocityRatio;
-
-                velocity.x += acceleration * Time.fixedDeltaTime;
-                if (velocity.x >= maxXVelocity)
-                {
-                    velocity.x = maxXVelocity;
-                }
-
-
-                Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y);
-                Vector2 rayDirection = Vector2.up;
-                float rayDistance = velocity.y * Time.fixedDeltaTime;
-                RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
-                if (hit2D.collider == null)
-                {
-                    isGrounded = false;
-                }
-                Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
-            }
-            //Colision horizontal
-            Vector2 wallOrigin = new Vector2(pos.x, pos.y);
-            Vector2 wallDir = Vector2.right;
-            RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
-            Debug.DrawRay(wallOrigin, wallDir * velocity.x * Time.fixedDeltaTime, Color.red);
-
-
-            if (wallHit.collider != null)
-            {
-                Ground ground = wallHit.collider.GetComponent<Ground>();
-                if (ground != null)
-                {
-                    if (pos.y < ground.groundHeight)
-                    {
-                        velocity.x = 0;
-                    }
-                }
-            }
+            IncreaseVelocity(pos);
 
             SetAnimation();
 
             transform.position = pos;
         }
+    }
+
+    private void CheckIfBlocked(Vector2 pos)
+    {
+        //Colision horizontal
+        Vector2 wallOrigin = new Vector2(pos.x, pos.y);
+        Vector2 wallDir = Vector2.right;
+        RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, wallDir, velocity.x * Time.fixedDeltaTime, groundLayerMask);
+        Debug.DrawRay(wallOrigin, wallDir * velocity.x * Time.fixedDeltaTime, Color.red);
+
+
+        if (wallHit.collider != null)
+        {
+            Ground ground = wallHit.collider.GetComponent<Ground>();
+            if (ground != null)
+            {
+                if (pos.y < ground.groundHeight)
+                {
+                    velocity.x = 0;
+                }
+            }
+        }
+    }
+
+    private void IncreaseVelocity(Vector2 pos)
+    {
+        if (isGrounded)
+        {
+            float velocityRatio = velocity.x / maxXVelocity;
+            acceleration = maxAcceleration * (1 - velocityRatio);
+            maxHoldJumpTime = maxMaxHoldJumpTime * velocityRatio;
+
+            velocity.x += acceleration * Time.fixedDeltaTime;
+            if (velocity.x >= maxXVelocity)
+            {
+                velocity.x = maxXVelocity;
+            }
+            CheckIfGrounded(pos);
+        }
+
+        CheckIfBlocked(pos);
+    }
+
+    private void CheckIfGrounded(Vector2 pos)
+    {
+        Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y);
+        Vector2 rayDirection = Vector2.up;
+        float rayDistance = velocity.y * Time.fixedDeltaTime;
+        RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
+        if (hit2D.collider == null)
+        {
+            isGrounded = false;
+        }
+        Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
+    }
+
+    private void IcreaseDistance()
+    {
+        distance += velocity.x * Time.fixedDeltaTime;
     }
 
     private float JumpMovement(Vector2 pos)
@@ -184,7 +204,7 @@ public class Player : MonoBehaviour
             notHoldingJump();
 
             //Caiguda collisio vertical
-            return VerticalGroundCollision(pos);
+            return GroundHeight(pos);
         }
         return pos.y;
     }
@@ -207,7 +227,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private float VerticalGroundCollision(Vector2 pos)
+    private float GroundHeight(Vector2 pos)
     {
         Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
         Vector2 rayDirection = Vector2.up;
