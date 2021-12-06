@@ -39,15 +39,9 @@ public class Ground : MonoBehaviour
         if (!player.isDead)
         {
             Vector2 pos = transform.position;
-            pos.x -= player.velocity.x * Time.fixedDeltaTime;
+            pos.x -= MoveGround(pos);
 
-
-            groundRight = transform.position.x + (collider.size.x / 2);
-            if (groundRight < -40)
-            {
-                Destroy(gameObject);
-                //return;
-            }
+            DestroyGroundIfOut();
 
             if (!didGenerateGround)
             {
@@ -60,6 +54,21 @@ public class Ground : MonoBehaviour
 
             transform.position = pos;
         }
+    }
+
+    private void DestroyGroundIfOut()
+    {
+        groundRight = transform.position.x + (collider.size.x / 2);
+
+        if (groundRight < -40)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private float MoveGround(Vector2 pos)
+    {
+        return player.velocity.x * Time.fixedDeltaTime;
     }
 
     void GenerateGround()

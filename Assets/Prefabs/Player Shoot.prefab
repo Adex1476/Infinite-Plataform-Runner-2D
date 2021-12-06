@@ -114,8 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5302bb083f93a2f4a8049950d5eae2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletManager: {fileID: 8860968351287493560, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
-    type: 3}
+  speed: 75
   minionLayerMask:
     serializedVersion: 2
     m_Bits: 512

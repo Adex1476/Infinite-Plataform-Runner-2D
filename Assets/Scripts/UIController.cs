@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour 
 {
     Text distanceText;
+    
     Player player;
 
     GameObject results;
+
     GameObject distGO;
 
     Text finalDistanceText; 
@@ -19,16 +21,17 @@ public class UIController : MonoBehaviour
         distGO = GameObject.Find("distanceText");
         distanceText = distGO.GetComponent<Text>();
 
-
         finalDistanceText = GameObject.Find("FinalDistanceText").GetComponent<Text>();
         results = GameObject.Find("Results");
         results.SetActive(false);
     }
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
         
     }
+
 
     // Update is called once per frame
     void Update()
@@ -44,7 +47,9 @@ public class UIController : MonoBehaviour
         }
     }
 
+
     public void Retry () => SceneManager.LoadScene("GameScene");
     
+
     public void Exit () => SceneManager.LoadScene("MainMenu");
 }

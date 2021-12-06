@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class BulletController : MonoBehaviour
     
     private Vector3 clickDirecction;
 
+    [SerializeField]
     private float speed = 25;
 
     [SerializeField]
@@ -34,31 +36,52 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 vel = player.GetComponent<Player>().velocity;
-        speed += vel.x;
+        
+    }
+
+    private void FixedUpdate()
+    {
+        MoveBullet();
+
+        Debug.DrawRay(transform.position, clickDirecction * speed, Color.green);
 
         //Vector3 bulletPosition = gameObject.transform.position;
         //Position = Position + vector / magnitud del vector * velocitat
-        gameObject.transform.position +=  clickDirecction / clickDirecction.magnitude * speed * Time.fixedDeltaTime;
-        //
-        Debug.DrawRay(transform.position, clickDirecction * speed, Color.green);
-
+        
         // Col·lisió de la bullet amb el minion
+        BulletHit();
+
+        // Bullet dins dels marges de la camera
+        DestroyBulletIfOut();
+        
+    }
+
+    private void DestroyBulletIfOut()
+    {
+        if (transform.position.x > screenRight + 20 || transform.position.y < screenBottom - 20 || transform.position.y > screenTop + 20)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void BulletHit()
+    {
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, clickDirecction, speed * Time.fixedDeltaTime, minionLayerMask);
         if (raycastHit2D.collider != null)
         {
             Debug.Log(raycastHit2D.collider);
             Destroy(raycastHit2D.collider.gameObject);
-            if(raycastHit2D.collider.gameObject)
+            if (raycastHit2D.collider.gameObject)
             {
                 Destroy(gameObject);
             }
         }
-        
-        // Bullet dins dels marges de la camera
-        if (transform.position.x > screenRight  + 20 || transform.position.y < screenBottom -20 || transform.position.y > screenTop + 20)
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    private void MoveBullet()
+    {
+        Vector2 vel = player.GetComponent<Player>().velocity;
+        speed += vel.x;
+        gameObject.transform.position += clickDirecction / clickDirecction.magnitude * speed * Time.fixedDeltaTime;
     }
 }

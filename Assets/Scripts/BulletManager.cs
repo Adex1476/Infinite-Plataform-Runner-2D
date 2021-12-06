@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,26 +31,35 @@ public class BulletManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        clickDirection = new Vector3(0, 0, 0);
-*/        if (!dataPlayer.isDead)
+        if (!dataPlayer.isDead)
         {
             playerPosition = player.transform.position;
 
             if (Input.GetMouseButtonDown(0))
-            {
-                //Point = camera Screen Point
-                var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
-                
-                clickPosition = new Vector2(screenPoint.origin.x, screenPoint.origin.y);
-               
-                clickDirection = (clickPosition - playerPosition).normalized;
+            {                 
+                clickDirection = ClickedDirection();
 
                 if (clickDirection.x > 0)
                 {
-                    Instantiate(bullet, playerPosition, Quaternion.identity);
+                    PullTrigger();
                     //player.GetComponentInParent<Animator>().SetBool("shooting", true);
                 }
             }
         }  
     }
+
+
+    private void PullTrigger() => Instantiate(bullet, playerPosition, Quaternion.identity);
+
+
+    private Vector2 ClickedDirection()
+    {
+        var screenPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        clickPosition = new Vector2(screenPoint.origin.x, screenPoint.origin.y);
+
+        return (clickPosition - playerPosition).normalized;
+    }
+
+
 }
