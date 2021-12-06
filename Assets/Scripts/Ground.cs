@@ -19,11 +19,7 @@ public class Ground : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        if (!player.isDead)
-        {
-
-            collider = GetComponent<BoxCollider2D>();
-        }
+        collider = GetComponent<BoxCollider2D>(); 
         groundHeight = transform.position.y + (collider.size.y / 2);
         screenRight = Camera.main.transform.position.x * 2;
     }
@@ -58,7 +54,7 @@ public class Ground : MonoBehaviour
                 if (groundRight < screenRight)
                 {
                     didGenerateGround = true;
-                    generateGround();
+                    GenerateGround();
                 }
             }
 
@@ -66,7 +62,7 @@ public class Ground : MonoBehaviour
         }
     }
 
-    void generateGround()
+    void GenerateGround()
     {
         GameObject go = Instantiate(gameObject);
         BoxCollider2D goCollider = go.GetComponent<BoxCollider2D>();
@@ -105,14 +101,19 @@ public class Ground : MonoBehaviour
         float minionNum = Random.Range(0, 3);
         for (int i=0; i< minionNum; i++)
         {
-            GameObject goMinion = Instantiate(minion);
-            float y = goGround.groundHeight;
-            float halfWidth = goCollider.size.x / 2 - 1;
-            float left = go.transform.position.x - halfWidth;
-            float right = go.transform.position.x + halfWidth;
-            float x = Random.Range(left, right);
-            Vector2 minionPos = new Vector2(x, y);
-            goMinion.transform.position = minionPos;
+            GenerateMinion(go, goGround, goCollider);
         }
+    }
+
+    private void GenerateMinion(GameObject go, Ground goGround, BoxCollider2D goCollider)
+    {
+        GameObject goMinion = Instantiate(minion);
+        float y = goGround.groundHeight;
+        float halfWidth = goCollider.size.x / 2 - 1;
+        float left = go.transform.position.x - halfWidth;
+        float right = go.transform.position.x + halfWidth;
+        float x = Random.Range(left, right);
+        Vector2 minionPos = new Vector2(x, y);
+        goMinion.transform.position = minionPos;
     }
 }

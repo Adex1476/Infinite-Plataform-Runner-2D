@@ -23,14 +23,19 @@ public class Vehicle : MonoBehaviour
     {
         if (!player.isDead)
         {
-            Vector2 pos = transform.position;
-            pos.x -= (player.velocity.x + speed) * Time.fixedDeltaTime;
-            if (pos.x < -50)
-            {
-                pos.x = Random.Range(300f, 500f);
-                pos.y = Random.Range(30f, 40f);
-            }
-            transform.position = pos;
+            MoveVehicle();
         }
+    }
+
+    private void MoveVehicle()
+    {
+        Vector2 pos = transform.position;
+        pos.x -= (player.velocity.x + speed) * Time.fixedDeltaTime;
+        if (pos.x < -50)
+        {
+            pos.x = Random.Range(300f, 500f);
+            pos.y = Random.Range(30f, 40f);
+        }
+        transform.position = pos;
     }
 }
