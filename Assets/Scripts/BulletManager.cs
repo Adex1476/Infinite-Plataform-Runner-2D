@@ -21,11 +21,17 @@ public class BulletManager : MonoBehaviour
     
     private Vector2 playerPosition;
 
+    private bool canShoot = true;
+
+    [SerializeField]
+    private float shootCDTime;
+
     void Awake()
     {
         //playerPosition = player.transform.position;
         //Instantiate(bullet, playerPosition, Quaternion.identity);
         dataPlayer = player.GetComponent<Player>();
+        shootCDTime = 0.3f;
     }
 
     // Update is called once per frame
@@ -35,19 +41,31 @@ public class BulletManager : MonoBehaviour
         {
             playerPosition = player.transform.position;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {                 
+
                 clickDirection = ClickedDirection();
 
                 if (clickDirection.x > 0)
                 {
-                    PullTrigger();
+                    if (canShoot)
+                    {
+                        PullTrigger();
+                        StartCoroutine(ShootColdown());
+
+                    }
                     //player.GetComponentInParent<Animator>().SetBool("shooting", true);
                 }
             }
         }  
     }
 
+    IEnumerator ShootColdown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shootCDTime);
+        canShoot = true;
+    }
 
     private void PullTrigger() => Instantiate(bullet, playerPosition, Quaternion.identity);
 
@@ -60,6 +78,4 @@ public class BulletManager : MonoBehaviour
 
         return (clickPosition - playerPosition).normalized;
     }
-
-
 }
