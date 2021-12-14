@@ -17,12 +17,15 @@ public class SpawnBoss : MonoBehaviour
     [SerializeField]
     private float maxRange = 550;
 
+    private Vector2 spawnPos;
+
     private Vector3 screenBounds;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        spawnPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         canSpawn = true;
     }
 
@@ -45,7 +48,7 @@ public class SpawnBoss : MonoBehaviour
 
     void spawnBoss()
     {
-        GameObject goBoss = Instantiate(boss, screenBounds, Quaternion.identity);
+        GameObject goBoss = Instantiate(boss, spawnPos, Quaternion.identity);
         canSpawn = false;
     }
 }
