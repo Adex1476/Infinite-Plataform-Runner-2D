@@ -12,6 +12,9 @@ public class BossManager : MonoBehaviour
 
     private int moveCounter;
 
+    [SerializeField]
+    private int health;
+
     float direction = -0.1f;
     [SerializeField]
     private float velocity = 1000;
@@ -28,12 +31,13 @@ public class BossManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
 
         moveCounter = 0;
+
+        health = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void FixedUpdate()
@@ -41,10 +45,33 @@ public class BossManager : MonoBehaviour
         if (!player.isDead)
         {
             BossMovement();
+
+            CheckHealth();
         }
+
     }
 
+    private void CheckHealth()
+    {
+        if (health < 1)
+        {
+            DestroyBoss();
+        }
 
+    }
+
+    public void DecreaseHealth(int damage)
+    {
+        health -= damage;
+        
+    }
+
+    private void DestroyBoss()
+    {
+        Destroy(gameObject);
+    }
+
+    
 
     void BossMovement()
     {
