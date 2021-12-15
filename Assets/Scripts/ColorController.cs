@@ -14,12 +14,15 @@ public class ColorController : MonoBehaviour
     [SerializeField]
     private int maxRange = 205;
 
+    [SerializeField]
+    private SpriteRenderer sprite;
     void Start()
     {
        player = GameObject.Find("Player").GetComponent<Player>();
        contador = 1;
        colorType = 0;
        GetComponent<Colorblind>().Type = colorType; 
+
     }
 
     // Update is called once per frame
@@ -32,7 +35,9 @@ public class ColorController : MonoBehaviour
             colorType++;
             colorType = (colorType > 3) ? 0 : colorType;
             GetComponent<Colorblind>().Type = colorType; 
-
+            sprite.color=new Color(0,0,255f);
+            
+            sprite.color=new Color(255f,0,0);
         }
     }
     void FixedUpdate(){
