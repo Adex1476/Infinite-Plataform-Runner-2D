@@ -12,18 +12,27 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float speed = 25;
 
+    public int damage = 1;
+
     [SerializeField]
     private LayerMask minionLayerMask;
 
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private GameObject boss;
+
     private float screenRight; 
     private float screenTop; 
-    private float screenBottom; 
+    private float screenBottom;
+    [SerializeField]
+    private LayerMask bossLayerMask;
+
     void Awake()
     {
         bulletManager = GameObject.Find("BulletManager").GetComponent<BulletManager>();
+        boss = GameObject.Find("Boss(Clone)");
         clickDirecction = bulletManager.clickDirection;
         clickDirecction = new Vector3(clickDirecction.x, clickDirecction.y, 0);
         screenRight = Camera.main.transform.position.x * 2;
@@ -54,6 +63,7 @@ public class BulletController : MonoBehaviour
         // Bullet dins dels marges de la camera
         DestroyBulletIfOut();
         
+        
     }
 
     private void DestroyBulletIfOut()
@@ -66,13 +76,19 @@ public class BulletController : MonoBehaviour
 
     private void BulletHit()
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, clickDirecction, speed * Time.fixedDeltaTime, minionLayerMask);
-        if (raycastHit2D.collider != null)
+        RaycastHit2D raycastMinionHit = Physics2D.Raycast(transform.position, clickDirecction, speed * Time.fixedDeltaTime, minionLayerMask);
+        RaycastHit2D raycastBossHit = Physics2D.Raycast(transform.position, clickDirecction, speed * Time.fixedDeltaTime, bossLayerMask);
+        if (raycastMinionHit.collider != null)
         {
-            Debug.Log(raycastHit2D.collider);
-            Destroy(raycastHit2D.collider.gameObject);
-            if (raycastHit2D.collider.gameObject)
+            Destroy(raycastMinionHit.collider.gameObject);
+            Destroy(gameObject);
+            
+        } else if (raycastBossHit.collider != null)
+        {
+            if (raycastBossHit.collider.gameObject)
             {
+                Debug.Log(raycastBossHit.collider);
+                boss.GetComponent<BossManager>().DecreaseHealth(damage);
                 Destroy(gameObject);
             }
         }

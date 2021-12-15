@@ -115,7 +115,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 75
+  damage: 1
   minionLayerMask:
     serializedVersion: 2
     m_Bits: 512
   player: {fileID: 1065262152620068242, guid: 713a3a3f22c747141a21e4c15712846a, type: 3}
+  boss: {fileID: 0}
+  bossLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
