@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BossFase
+{
+    Fase0,
+    Fase1,
+    Fase2
+}
 public class BossManager : MonoBehaviour
 {
     private Player player;
@@ -22,6 +28,10 @@ public class BossManager : MonoBehaviour
 
     private float shootCD = 4;
     private bool canShoot;
+    [SerializeField]
+    private BossFase bossFase;
+    [SerializeField]
+    private float bulletForce = 30;
 
 
 
@@ -32,23 +42,53 @@ public class BossManager : MonoBehaviour
 
         moveCounter = 0;
 
-        health = 10;
+        health = 30;
+
+
+        bossFase = BossFase.Fase0;
+
+        StartCoroutine(ShootCooldown());
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
     void FixedUpdate()
     {
+        Debug.Log(bossFase);
         if (!player.isDead)
         {
-            BossMovement();
-
-            CheckHealth();
+            switch (bossFase)
+            {
+                case BossFase.Fase0:
+                    BossMovement();
+                    BossShooting();
+                    ChangeFase(20, BossFase.Fase1);
+                    break;
+                case BossFase.Fase1:
+                    BossMovement();
+                    GetComponent<SpriteRenderer>().color = Color.cyan;
+                    //Spawn flying enemies
+                    ChangeFase(10, BossFase.Fase2);
+                    break;
+                case BossFase.Fase2:
+                    //Last fase
+                    GetComponent<SpriteRenderer>().color = Color.red;
+                    CheckHealth();
+                    break;
+            }
         }
+    }
 
+    private void ChangeFase(int limitHealth, BossFase faseToChange)
+    {
+        if (health <= limitHealth)
+        {
+            bossFase = faseToChange;
+        }
     }
 
     private void CheckHealth()
@@ -63,7 +103,7 @@ public class BossManager : MonoBehaviour
     public void DecreaseHealth(int damage)
     {
         health -= damage;
-        
+
     }
 
     private void DestroyBoss()
@@ -71,7 +111,7 @@ public class BossManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+
 
     void BossMovement()
     {
@@ -91,6 +131,7 @@ public class BossManager : MonoBehaviour
         if (canShoot)
         {
             GameObject shoot = Instantiate(bullet, transform.position, Quaternion.identity);
+            shoot.GetComponent<Rigidbody2D>().AddForce((GameObject.Find("Player").transform.position - transform.position).normalized * bulletForce, ForceMode2D.Impulse);
             StartCoroutine(ShootCooldown());
         }
     }

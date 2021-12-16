@@ -112,6 +112,8 @@ MonoBehaviour:
   health: 0
   isDead: 0
   animator: {fileID: 1065262152620068254}
+  playerCamera: {fileID: 0}
+  initialCameraSize: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256

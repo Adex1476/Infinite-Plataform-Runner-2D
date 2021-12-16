@@ -80,14 +80,17 @@ public class BulletController : MonoBehaviour
         RaycastHit2D raycastBossHit = Physics2D.Raycast(transform.position, clickDirecction, speed * Time.fixedDeltaTime, bossLayerMask);
         if (raycastMinionHit.collider != null)
         {
-            Destroy(raycastMinionHit.collider.gameObject);
-            Destroy(gameObject);
+            if (raycastMinionHit.collider.gameObject)
+            {
+                Destroy(raycastMinionHit.collider.gameObject);
+                Destroy(gameObject);
+            }
+           
             
         } else if (raycastBossHit.collider != null)
         {
             if (raycastBossHit.collider.gameObject)
             {
-                Debug.Log(raycastBossHit.collider);
                 boss.GetComponent<BossManager>().DecreaseHealth(damage);
                 Destroy(gameObject);
             }
