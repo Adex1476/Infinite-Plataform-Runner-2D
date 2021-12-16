@@ -45,4 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7259374370334305698, guid: 6874799162c5e43ad8b8d2f5d917f42f, type: 3}
   player: {fileID: 8860968351287493561}
-  clickPosition: {x: 0, y: 0, z: 0}
+  dataPlayer: {fileID: 0}
+  clickPosition: {x: 0, y: 0}
+  clickDirection: {x: 0, y: 0}
+  shootCDTime: 0

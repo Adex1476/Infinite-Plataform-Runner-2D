@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace Wilberforce
-{
+
     [ExecuteInEditMode]
     [RequireComponent(typeof(Camera))]
 	[HelpURL("https://projectwilberforce.github.io/colorblind/")]
@@ -161,4 +160,3 @@ namespace Wilberforce
 		}
 	}
 	#endif
-}
