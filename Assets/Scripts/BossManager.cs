@@ -32,6 +32,9 @@ public class BossManager : MonoBehaviour
     private BossFase bossFase;
     [SerializeField]
     private float bulletForce = 30;
+    [SerializeField]
+    private GameObject flyingMinion;
+    private bool didSpawnMinion = false;
 
 
 
@@ -43,7 +46,6 @@ public class BossManager : MonoBehaviour
         moveCounter = 0;
 
         health = 30;
-
 
         bossFase = BossFase.Fase0;
 
@@ -69,18 +71,38 @@ public class BossManager : MonoBehaviour
                     ChangeFase(20, BossFase.Fase1);
                     break;
                 case BossFase.Fase1:
-                    BossMovement();
                     GetComponent<SpriteRenderer>().color = Color.cyan;
                     //Spawn flying enemies
+                    BossMovement();
+                    SpawnFlyingMinion();
                     ChangeFase(10, BossFase.Fase2);
                     break;
                 case BossFase.Fase2:
                     //Last fase
+                    BossMovement();
+                    SpawnFlyingMinion();
+                    BossShooting();
                     GetComponent<SpriteRenderer>().color = Color.red;
                     CheckHealth();
                     break;
             }
         }
+    }
+
+    private void SpawnFlyingMinion()
+    {
+        if (!didSpawnMinion)
+        {
+            Instantiate(flyingMinion, new Vector3(transform.position.x, UnityEngine.Random.Range(transform.position.y - 10, transform.position.y + 10), transform.position.z), Quaternion.identity);
+            StartCoroutine(MinionSpawnCooldown());
+        }
+    }
+
+    private IEnumerator MinionSpawnCooldown()
+    {
+        didSpawnMinion = true;
+        yield return new WaitForSeconds(3f);
+        didSpawnMinion = false;
     }
 
     private void ChangeFase(int limitHealth, BossFase faseToChange)
