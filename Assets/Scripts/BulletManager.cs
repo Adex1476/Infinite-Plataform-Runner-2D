@@ -26,12 +26,22 @@ public class BulletManager : MonoBehaviour
     [SerializeField]
     private float shootCDTime;
 
+    [SerializeField]
+    private Animator bulletUIAnimator;
+
+    [SerializeField]
+    private int totalLoad = 6;
+    [SerializeField]
+    private int bulletIndex;
+
+
     void Awake()
     {
         //playerPosition = player.transform.position;
         //Instantiate(bullet, playerPosition, Quaternion.identity);
         dataPlayer = player.GetComponent<Player>();
-        shootCDTime = 0.3f;
+        totalLoad = 6;
+        bulletIndex = totalLoad;
     }
 
     // Update is called once per frame
@@ -41,7 +51,7 @@ public class BulletManager : MonoBehaviour
         {
             playerPosition = player.transform.position;
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {                 
 
                 clickDirection = ClickedDirection();
@@ -50,8 +60,18 @@ public class BulletManager : MonoBehaviour
                 {
                     if (canShoot)
                     {
+                        bulletIndex--;
+                        bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
                         PullTrigger();
-                        StartCoroutine(ShootColdown());
+                        if (bulletIndex == 0)
+                        {
+                            bulletIndex = 6;
+                            StartCoroutine(ReloadCooldown());
+                        }else
+                        {
+                            StartCoroutine(ShootColdown());
+                        }
+
 
                     }
                     //player.GetComponentInParent<Animator>().SetBool("shooting", true);
@@ -60,9 +80,18 @@ public class BulletManager : MonoBehaviour
         }  
     }
 
+    private IEnumerator ReloadCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(1f);
+        bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
+        canShoot = true;
+    }
+
     IEnumerator ShootColdown()
     {
         canShoot = false;
+        //bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
         yield return new WaitForSeconds(shootCDTime);
         canShoot = true;
     }
