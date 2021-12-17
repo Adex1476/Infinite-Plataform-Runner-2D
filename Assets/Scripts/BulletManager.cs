@@ -51,7 +51,7 @@ public class BulletManager : MonoBehaviour
         {
             playerPosition = player.transform.position;
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0))
             {                 
 
                 clickDirection = ClickedDirection();
@@ -61,17 +61,8 @@ public class BulletManager : MonoBehaviour
                     if (canShoot)
                     {
                         bulletIndex--;
-                        bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
                         PullTrigger();
-                        if (bulletIndex == 0)
-                        {
-                            bulletIndex = 6;
-                            StartCoroutine(ReloadCooldown());
-                        }else
-                        {
-                            StartCoroutine(ShootColdown());
-                        }
-
+                        StartCoroutine(ShootColdown());
 
                     }
                     //player.GetComponentInParent<Animator>().SetBool("shooting", true);
@@ -82,18 +73,26 @@ public class BulletManager : MonoBehaviour
 
     private IEnumerator ReloadCooldown()
     {
-        canShoot = false;
-        yield return new WaitForSeconds(1f);
-        bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
+        bulletUIAnimator.SetBool("Reloading", true); 
+        bulletIndex = 6;
+        yield return new WaitForSeconds(shootCDTime);
+        bulletUIAnimator.SetBool("Reloading", false);
         canShoot = true;
     }
 
     IEnumerator ShootColdown()
     {
         canShoot = false;
-        //bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
+        bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
         yield return new WaitForSeconds(shootCDTime);
-        canShoot = true;
+        if (bulletIndex > 0)
+        {
+            canShoot = true;
+        }
+        else if (bulletIndex <= 0)
+        {
+            StartCoroutine(ReloadCooldown());
+        }
     }
 
     private void PullTrigger() => Instantiate(bullet, playerPosition, Quaternion.identity);
