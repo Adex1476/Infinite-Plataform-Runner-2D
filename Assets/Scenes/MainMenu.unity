@@ -1612,10 +1612,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 7277030146844522148, guid: c49035be5a97d414fbb2fd8348535030,
+    - target: {fileID: 4824340992559702736, guid: c49035be5a97d414fbb2fd8348535030,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
+      propertyPath: m_Name
+      value: Achievements
       objectReference: {fileID: 0}
     - target: {fileID: 7277030146844522148, guid: c49035be5a97d414fbb2fd8348535030,
         type: 3}
@@ -1624,13 +1624,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277030146844522148, guid: c49035be5a97d414fbb2fd8348535030,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
+      propertyPath: m_SizeDelta.y
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277030146844522148, guid: c49035be5a97d414fbb2fd8348535030,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7277030146844522148, guid: c49035be5a97d414fbb2fd8348535030,
         type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 140
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7446555890058660304, guid: c49035be5a97d414fbb2fd8348535030,
         type: 3}
@@ -1920,6 +1925,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4529981909961260996, guid: 12b1432ee4815524aaaba137bc062680,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 420
+      objectReference: {fileID: 0}
     - target: {fileID: 8103535617643612296, guid: 12b1432ee4815524aaaba137bc062680,
         type: 3}
       propertyPath: m_PreserveAspect
@@ -1968,6 +1978,16 @@ PrefabInstance:
     - target: {fileID: 8103535618460122669, guid: 12b1432ee4815524aaaba137bc062680,
         type: 3}
       propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8103535618460122669, guid: 12b1432ee4815524aaaba137bc062680,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8103535618460122671, guid: 12b1432ee4815524aaaba137bc062680,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8103535618563274682, guid: 12b1432ee4815524aaaba137bc062680,
@@ -2180,7 +2200,19 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 8103535618642687379}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8103535618642687379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1331332510008970185, guid: 12b1432ee4815524aaaba137bc062680,
+    type: 3}
+  m_PrefabInstance: {fileID: 8103535618642687370}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103535618642687372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

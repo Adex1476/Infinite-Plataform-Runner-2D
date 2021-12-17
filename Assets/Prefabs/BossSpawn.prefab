@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8860968351287493561
+--- !u!1 &2735100452193820380
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8860968351287493563}
-  - component: {fileID: 8860968351287493560}
+  - component: {fileID: 2735100452193820370}
+  - component: {fileID: 2735100452193820381}
   m_Layer: 0
-  m_Name: BulletManager
+  m_Name: BossSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8860968351287493563
+--- !u!4 &2735100452193820370
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860968351287493561}
+  m_GameObject: {fileID: 2735100452193820380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.3479805, y: 7.072245, z: -1.9377602}
+  m_LocalPosition: {x: 38.9, y: 15.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8860968351287493560
+--- !u!114 &2735100452193820381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8860968351287493561}
+  m_GameObject: {fileID: 2735100452193820380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3746b06ef385e4499c1d0635d94aeaa, type: 3}
+  m_Script: {fileID: 11500000, guid: eab6bbc635de561458701714476884c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7259374370334305698, guid: 6874799162c5e43ad8b8d2f5d917f42f, type: 3}
-  player: {fileID: 0}
-  dataPlayer: {fileID: 0}
-  clickPosition: {x: 0, y: 0}
-  clickDirection: {x: 0, y: 0}
-  shootCDTime: 0.8
-  bulletUIAnimator: {fileID: 0}
-  totalLoad: 6
-  bulletIndex: 0
+  boss: {fileID: 3871468169950339713, guid: 27341f7323b54804dab32d4242a439bc, type: 3}
+  minRange: 0
+  maxRange: 5
