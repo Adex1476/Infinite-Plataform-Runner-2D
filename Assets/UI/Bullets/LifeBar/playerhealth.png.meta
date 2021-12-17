@@ -1,7 +1,49 @@
 fileFormatVersion: 2
 guid: 2c9673a9b325a644babe3b545f2c6e72
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -827307370223439100
+    second: playerhealth_0
+  - first:
+      213: 4540377905603473103
+    second: playerhealth_1
+  - first:
+      213: 6882133739121224882
+    second: playerhealth_2
+  - first:
+      213: -5224235002827595143
+    second: playerhealth_3
+  - first:
+      213: 5927614919365860239
+    second: playerhealth_4
+  - first:
+      213: -4649185065856654825
+    second: playerhealth_5
+  - first:
+      213: 8156192160552406096
+    second: playerhealth_6
+  - first:
+      213: 7298791157984004138
+    second: playerhealth_7
+  - first:
+      213: 4614236032751820551
+    second: playerhealth_8
+  - first:
+      213: -5903420935543454415
+    second: playerhealth_9
+  - first:
+      213: 8369949469571358475
+    second: playerhealth_10
+  - first:
+      213: -737470360052306487
+    second: playerhealth_11
+  - first:
+      213: -1273621729720087486
+    second: playerhealth_12
+  - first:
+      213: 2207427406841565056
+    second: playerhealth_empty
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +82,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,7 +139,280 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: playerhealth_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 6
+        width: 140
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 403f4cd7450d484f0800000000000000
+      internalID: -827307370223439100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcee68136a9a20f30800000000000000
+      internalID: 4540377905603473103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_2
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc2d013c20428f50800000000000000
+      internalID: 6882133739121224882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_3
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972ac41b1f9cf77b0800000000000000
+      internalID: -5224235002827595143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_4
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8b9b120d5e134250800000000000000
+      internalID: 5927614919365860239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_5
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7122096a0d6ca7fb0800000000000000
+      internalID: -4649185065856654825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05c4d818e8d903170800000000000000
+      internalID: 8156192160552406096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_7
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a28066533e38a4560800000000000000
+      internalID: 7298791157984004138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_8
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70fdaf9793f090040800000000000000
+      internalID: 4614236032751820551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_9
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1350451dfe5d21ea0800000000000000
+      internalID: -5903420935543454415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_10
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0f15c952b8082470800000000000000
+      internalID: 8369949469571358475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_11
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cde3b46d9af3c5f0800000000000000
+      internalID: -737470360052306487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerhealth_empty
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 11
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08fc044f78b52ae10800000000000000
+      internalID: 2207427406841565056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
