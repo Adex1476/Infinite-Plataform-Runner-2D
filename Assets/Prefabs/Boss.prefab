@@ -49,6 +49,9 @@ MonoBehaviour:
   health: 10
   velocity: 1000
   bossFase: 0
+  bulletForce: 30
+  flyingMinion: {fileID: 9187072555623492258, guid: cdf913c28fff4b64893a8bb4a9ff542b,
+    type: 3}
 --- !u!212 &3871468169950339718
 SpriteRenderer:
   m_ObjectHideFlags: 0

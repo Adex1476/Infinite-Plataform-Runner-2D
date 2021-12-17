@@ -1377,7 +1377,7 @@ SpriteRenderer:
   m_Size: {x: 2.5, y: 1.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1255308644
@@ -2643,6 +2643,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 625924630}
     m_Modifications:
+    - target: {fileID: 412458898933098853, guid: d1c784d1928a71d4ab8d36e4f0a7659f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 897429132399395105, guid: d1c784d1928a71d4ab8d36e4f0a7659f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2893,6 +2898,11 @@ PrefabInstance:
       propertyPath: dataPlayer
       value: 
       objectReference: {fileID: 502433947}
+    - target: {fileID: 8860968351287493560, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
+        type: 3}
+      propertyPath: bulletUIAnimator
+      value: 
+      objectReference: {fileID: 202995504}
     - target: {fileID: 8860968351287493561, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
         type: 3}
       propertyPath: m_Name

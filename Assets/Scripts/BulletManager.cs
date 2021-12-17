@@ -26,12 +26,22 @@ public class BulletManager : MonoBehaviour
     [SerializeField]
     private float shootCDTime;
 
+    [SerializeField]
+    private Animator bulletUIAnimator;
+
+    [SerializeField]
+    private int totalLoad = 6;
+    [SerializeField]
+    private int bulletIndex;
+
+
     void Awake()
     {
         //playerPosition = player.transform.position;
         //Instantiate(bullet, playerPosition, Quaternion.identity);
         dataPlayer = player.GetComponent<Player>();
-        shootCDTime = 0.3f;
+        totalLoad = 6;
+        bulletIndex = totalLoad;
     }
 
     // Update is called once per frame
@@ -41,7 +51,7 @@ public class BulletManager : MonoBehaviour
         {
             playerPosition = player.transform.position;
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetKey(KeyCode.Mouse0))
             {                 
 
                 clickDirection = ClickedDirection();
@@ -50,6 +60,7 @@ public class BulletManager : MonoBehaviour
                 {
                     if (canShoot)
                     {
+                        bulletIndex--;
                         PullTrigger();
                         StartCoroutine(ShootColdown());
 
@@ -60,11 +71,28 @@ public class BulletManager : MonoBehaviour
         }  
     }
 
+    private IEnumerator ReloadCooldown()
+    {
+        bulletUIAnimator.SetBool("Reloading", true); 
+        bulletIndex = 6;
+        yield return new WaitForSeconds(shootCDTime);
+        bulletUIAnimator.SetBool("Reloading", false);
+        canShoot = true;
+    }
+
     IEnumerator ShootColdown()
     {
         canShoot = false;
+        bulletUIAnimator.SetInteger("bulletIndex", bulletIndex);
         yield return new WaitForSeconds(shootCDTime);
-        canShoot = true;
+        if (bulletIndex > 0)
+        {
+            canShoot = true;
+        }
+        else if (bulletIndex <= 0)
+        {
+            StartCoroutine(ReloadCooldown());
+        }
     }
 
     private void PullTrigger() => Instantiate(bullet, playerPosition, Quaternion.identity);
