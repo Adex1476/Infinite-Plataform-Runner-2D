@@ -1632,6 +1632,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 140
       objectReference: {fileID: 0}
+    - target: {fileID: 7446555890058660304, guid: c49035be5a97d414fbb2fd8348535030,
+        type: 3}
+      propertyPath: m_Text
+      value: Achievements
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c49035be5a97d414fbb2fd8348535030, type: 3}
 --- !u!114 &1827578888 stripped
@@ -2122,6 +2127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8103535618289592099, guid: 12b1432ee4815524aaaba137bc062680, type: 3}
+    - {fileID: 5257756605195806700, guid: 12b1432ee4815524aaaba137bc062680, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 12b1432ee4815524aaaba137bc062680, type: 3}
 --- !u!1 &8103535618642687371 stripped
 GameObject:
@@ -2156,7 +2162,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7490196, g: 0.42745098, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
