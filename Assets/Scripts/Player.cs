@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
 
     private void CheckEnemyCollision()
     {
-        Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y);
+        Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y - 3.5f);
         Vector2 playerDir = Vector2.right;
         float playerRayDistance = velocity.x * Time.fixedDeltaTime;
         RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);

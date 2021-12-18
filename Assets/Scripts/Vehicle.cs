@@ -34,7 +34,7 @@ public class Vehicle : MonoBehaviour
         if (pos.x < -50)
         {
             pos.x = Random.Range(300f, 500f);
-            pos.y = Random.Range(30f, 40f);
+            pos.y = Random.Range(40f, 50f);
         }
         transform.position = pos;
     }

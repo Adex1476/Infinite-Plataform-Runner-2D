@@ -35,9 +35,6 @@ public class ColorController : MonoBehaviour
             colorType++;
             colorType = (colorType > 3) ? 0 : colorType;
             GetComponent<Colorblind>().Type = colorType; 
-            sprite.color=new Color(0,0,255f);
-            
-            sprite.color=new Color(255f,0,0);
         }
     }
     void FixedUpdate(){

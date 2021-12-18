@@ -117,7 +117,7 @@ public class Ground : MonoBehaviour
     private void GenerateMinion(GameObject go, Ground goGround, BoxCollider2D goCollider)
     {
         GameObject goMinion = Instantiate(minion);
-        float y = goGround.groundHeight;
+        float y = goGround.groundHeight - 2.5f;
         float halfWidth = goCollider.size.x / 2 - 1;
         float left = go.transform.position.x - halfWidth;
         float right = go.transform.position.x + halfWidth;
