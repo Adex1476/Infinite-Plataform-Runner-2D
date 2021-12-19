@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
 
     public float gravity;
-    
+
     public Vector2 velocity;
 
     [SerializeField]
@@ -16,9 +16,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float acceleration = 10;
-    
+
     public float distance = 0;
-   
+
     public float jumpVelocity = 20;
 
     [SerializeField]
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool isHoldingJump = false;
-    
+
     public float maxHoldJumpTime = 0.4f;
 
     [SerializeField]
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     private float jumpGroundThreshold = 1;
 
     public int health;
-    
+
     public bool isDead = false;
 
     //Animator
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 2;
+        health = 4;
 
         playerCamera = Camera.main;
 
@@ -189,7 +189,8 @@ public class Player : MonoBehaviour
 
     private void IcreaseDistance()
     {
-        distance += velocity.x * Time.fixedDeltaTime;
+        if (!isDead)
+            distance += velocity.x * Time.fixedDeltaTime;
     }
 
     private float JumpMovement(Vector2 pos)
@@ -306,7 +307,7 @@ public class Player : MonoBehaviour
             return;
         }
     }
-    
+
     private void CheckFallDeath(Vector2 pos)
     {
         if (pos.y < -20)

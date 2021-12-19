@@ -82,7 +82,8 @@ public class BulletController : MonoBehaviour
         {
             if (raycastMinionHit.collider.gameObject)
             {
-                Destroy(raycastMinionHit.collider.gameObject);
+                raycastMinionHit.collider.gameObject.GetComponent<Animator>().SetBool("isDead", true);
+                raycastMinionHit.collider.gameObject.layer = 0;
                 Destroy(gameObject);
             }
            

@@ -7,10 +7,14 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
 
-    private GameObject Player;
-    private Player playerData;
     [SerializeField]
+    private GameObject Player;
+    [SerializeField]
+    private Player playerData;
     private GameObject EndGameUI;
+
+    [SerializeField]
+    private GameObject healthBar;
 
     public static GameManager Instance
     {
@@ -33,12 +37,15 @@ public class GameManager : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         playerData = playerData.GetComponent<Player>();
+        healthBar = GameObject.Find("Health Bar");
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(playerData.health);
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        GameObject.Find("HealthBar").GetComponent<HealthBar>().SetHealth(playerData.health);
         PlayerDeath();
     }
 
