@@ -119,6 +119,10 @@ public class Player : MonoBehaviour
             //Salt
             pos.y = JumpMovement(pos);
 
+            //BUG CHEACK IF GROUNDED   CheckIfGrounded(Vector2 pos)      //Debug.Log($"grounded   {isGrounded}   {Time.time}");
+
+
+
             //Colision enemy
             CheckEnemyCollision();
 
@@ -162,7 +166,6 @@ public class Player : MonoBehaviour
             float velocityRatio = velocity.x / maxXVelocity;
             acceleration = maxAcceleration * (1 - velocityRatio);
             maxHoldJumpTime = maxMaxHoldJumpTime * velocityRatio;
-
             velocity.x += acceleration * Time.fixedDeltaTime;
             if (velocity.x >= maxXVelocity)
             {
@@ -170,21 +173,24 @@ public class Player : MonoBehaviour
             }
             CheckIfGrounded(pos);
         }
-
         CheckIfBlocked(pos);
     }
 
     private void CheckIfGrounded(Vector2 pos)
     {
         Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y);
-        Vector2 rayDirection = Vector2.up;
+        Vector2 rayDirection = Vector2.down;
         float rayDistance = velocity.y * Time.fixedDeltaTime;
         RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
         if (hit2D.collider == null)
         {
+            
             isGrounded = false;
+        }else
+        {
+            Debug.Log(hit2D.collider + " " + Time.time);
         }
-        Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
+        Debug.DrawRay(rayOrigin, rayDirection * 100, Color.yellow);
     }
 
     private void IcreaseDistance()

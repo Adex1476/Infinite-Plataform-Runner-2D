@@ -60,7 +60,6 @@ public class BossManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(bossFase);
         if (!player.isDead)
         {
             switch (bossFase)
