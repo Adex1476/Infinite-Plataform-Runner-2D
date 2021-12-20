@@ -799,8 +799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603c1ff4edf601847b4b174615bb1b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRange: 200
-  maxRange: 205
+  minRange: 50
+  maxRange: 55
   sprite: {fileID: 0}
 --- !u!114 &963194229
 MonoBehaviour:
