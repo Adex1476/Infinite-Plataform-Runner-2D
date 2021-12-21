@@ -7,23 +7,24 @@ public class Ground : MonoBehaviour
     Player player;
 
     public float groundHeight;
-    public float groundRight;
-    public float screenRight;
-    BoxCollider2D collider;
+    private float groundRight;
+    private float screenRight;
+    private BoxCollider2D groundCollider;
 
     bool didGenerateGround = false;
 
-    public GameObject minion;
+    [SerializeField]
+    private GameObject minion;
+    [SerializeField]
+    private GameObject GreenHealthKit;
+    [SerializeField]
+    private GameObject redHealthKit;
     
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        if (!player.isDead)
-        {
-
-            collider = GetComponent<BoxCollider2D>();
-        }
-        groundHeight = transform.position.y + (collider.size.y / 2);
+        groundCollider = GetComponent<BoxCollider2D>(); 
+        groundHeight = transform.position.y + (groundCollider.size.y / 2);
         screenRight = Camera.main.transform.position.x * 2;
     }
     void Start()
@@ -42,22 +43,16 @@ public class Ground : MonoBehaviour
         if (!player.isDead)
         {
             Vector2 pos = transform.position;
-            pos.x -= player.velocity.x * Time.fixedDeltaTime;
+            pos.x -= MoveGround(pos);
 
-
-            groundRight = transform.position.x + (collider.size.x / 2);
-            if (groundRight < -40)
-            {
-                Destroy(gameObject);
-                //return;
-            }
+            DestroyGroundIfOut();
 
             if (!didGenerateGround)
             {
                 if (groundRight < screenRight)
                 {
                     didGenerateGround = true;
-                    generateGround();
+                    GenerateGround();
                 }
             }
 
@@ -65,7 +60,22 @@ public class Ground : MonoBehaviour
         }
     }
 
-    void generateGround()
+    private void DestroyGroundIfOut()
+    {
+        groundRight = transform.position.x + (groundCollider.size.x / 2);
+
+        if (groundRight < -40)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private float MoveGround(Vector2 pos)
+    {
+        return player.velocity.x * Time.fixedDeltaTime;
+    }
+
+    void GenerateGround()
     {
         GameObject go = Instantiate(gameObject);
         BoxCollider2D goCollider = go.GetComponent<BoxCollider2D>();
@@ -101,17 +111,32 @@ public class Ground : MonoBehaviour
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
 
 
-        float minionNum = Random.Range(0, 3);
+        float minionNum = Random.Range(0, 2);
         for (int i=0; i< minionNum; i++)
         {
-            GameObject goMinion = Instantiate(minion);
-            float y = goGround.groundHeight;
-            float halfWidth = goCollider.size.x / 2 - 1;
-            float left = go.transform.position.x - halfWidth;
-            float right = go.transform.position.x + halfWidth;
-            float x = Random.Range(left, right);
-            Vector2 minionPos = new Vector2(x, y);
-            goMinion.transform.position = minionPos;
+            GenerateMinion(go, goGround, goCollider, minion);
         }
+        float greenHealthNum = Random.Range(0, 2);
+        for (int i=0; i< greenHealthNum; i++)
+        {
+            GenerateMinion(go, goGround, goCollider, GreenHealthKit);
+        }
+        float redHealthNum = Random.Range(0, 2);
+        for (int i=0; i< redHealthNum; i++)
+        {
+            GenerateMinion(go, goGround, goCollider, redHealthKit);
+        }
+    }
+
+    private void GenerateMinion(GameObject go, Ground goGround, BoxCollider2D goCollider, GameObject gameObjectToSpawn)
+    {
+        GameObject goMinion = Instantiate(gameObjectToSpawn);
+        float y = goGround.groundHeight - 2.5f;
+        float halfWidth = goCollider.size.x / 2 - 1;
+        float left = go.transform.position.x - halfWidth;
+        float right = go.transform.position.x + halfWidth;
+        float x = Random.Range(left, right);
+        Vector2 minionPos = new Vector2(x, y);
+        goMinion.transform.position = minionPos;
     }
 }

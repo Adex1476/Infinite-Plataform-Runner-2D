@@ -30,12 +30,11 @@ public class MenuNavegation : MonoBehaviour
         buttonsMenu[6].onClick.AddListener(UnloadGarage);
         buttonsMenu[7].onClick.AddListener(UnloadArchivements);
         buttonsMenu[8].onClick.AddListener(UnloadSettings);
-        //buttonsMenu[4].onClick.AddListener(LoadGame);
     }
 
     private void LoadMenu() => canvasMenus[0].SetActive(true);
     private void UnloadMenu() => canvasMenus[0].SetActive(false);
-    private void LoadGame() => SceneManager.LoadScene("GameScene");
+    private void LoadGame() => SceneManager.LoadScene(1, LoadSceneMode.Single);
     private void LoadShop() { UnloadMenu(); canvasMenus[1].SetActive(true); }
     private void UnloadShop() { canvasMenus[1].SetActive(false); LoadMenu(); }
     private void LoadGarage() { UnloadMenu(); canvasMenus[2].SetActive(true); }

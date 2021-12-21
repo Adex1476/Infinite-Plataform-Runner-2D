@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,12 +23,20 @@ public class Minion : MonoBehaviour
         if (!player.isDead)
         {
             Vector2 pos = transform.position;
-            pos.x -= player.velocity.x * Time.fixedDeltaTime;
-            if (pos.x < -50)
-            {
-                Destroy(gameObject);
-            }
+            
+            pos.x -= MinionMove();
+
+            DestroyMinionIfOut(pos); 
+
             transform.position = pos;
         }
     }
+
+    private void DestroyMinionIfOut(Vector2 pos)
+    {
+        if (pos.x < -50)
+            Destroy(gameObject);
+    }
+
+    private float MinionMove() { return player.velocity.x * Time.fixedDeltaTime; }
 }

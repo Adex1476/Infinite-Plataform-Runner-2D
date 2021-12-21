@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7259374370334305698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.022811, y: 15.997043, z: -1.0327247}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -114,9 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5302bb083f93a2f4a8049950d5eae2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletManager: {fileID: 8860968351287493560, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
-    type: 3}
+  speed: 75
+  damage: 1
   minionLayerMask:
     serializedVersion: 2
     m_Bits: 512
   player: {fileID: 1065262152620068242, guid: 713a3a3f22c747141a21e4c15712846a, type: 3}
+  boss: {fileID: 0}
+  bossLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
