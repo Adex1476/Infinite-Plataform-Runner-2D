@@ -14,21 +14,17 @@ public class ColorController : MonoBehaviour
     [SerializeField]
     private int maxRange = 205;
 
-    [SerializeField]
-    private SpriteRenderer sprite;
     void Start()
     {
        player = GameObject.Find("Player").GetComponent<Player>();
        contador = 1;
        colorType = 0;
        GetComponent<Colorblind>().Type = colorType; 
-
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {     
         if(player.distance/contador > minRange && player.distance/contador < maxRange){
             Debug.Log(player.distance);
             contador++;
@@ -37,7 +33,5 @@ public class ColorController : MonoBehaviour
             GetComponent<Colorblind>().Type = colorType; 
         }
     }
-    void FixedUpdate(){
 
-    }
 }
