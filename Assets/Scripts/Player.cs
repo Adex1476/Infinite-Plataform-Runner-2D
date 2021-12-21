@@ -221,9 +221,26 @@ public class Player : MonoBehaviour
         Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y - 3.5f);
         Vector2 playerDir = Vector2.right;
         float playerRayDistance = velocity.x * Time.fixedDeltaTime;
-        RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        RaycastHit2D playerHitDown = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        RaycastHit2D playerHitMid = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        RaycastHit2D playerHitUp = Physics2D.Raycast(playerOrigin + new Vector2(0, 4), playerDir, playerRayDistance, minionLayerMask);
         Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
+        Debug.DrawRay(playerOrigin + new Vector2(0, 2), playerDir * playerRayDistance, Color.green);
+        Debug.DrawRay(playerOrigin + new Vector2(0, 4), playerDir * playerRayDistance, Color.green);
 
+        CheckHit(playerHitDown);
+        if (playerHitDown.collider == null)
+            CheckHit(playerHitMid);
+        if (playerHitDown.collider == null && playerHitMid.collider == null)
+            CheckHit(playerHitUp);
+    }
+
+    private void CheckHit(RaycastHit2D playerHit)
+    {
+        //if (playerHit.collider.CompareTag("MedKit"))
+        {
+            Debug.Log("Medkit");
+        }
         if (playerHit.collider != null)
         {
             //Set hurt animation
@@ -233,6 +250,7 @@ public class Player : MonoBehaviour
             CheckifDead();
         }
     }
+
 
     private float GroundHeight(Vector2 pos)
     {
