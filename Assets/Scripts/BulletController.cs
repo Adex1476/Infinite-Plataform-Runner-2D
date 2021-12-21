@@ -88,8 +88,11 @@ public class BulletController : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
-                Destroy(raycastMinionHit.collider.gameObject);
+                if (!raycastMinionHit.collider.gameObject.CompareTag("MedKit"))
+                {
+                    Destroy(gameObject);
+                    Destroy(raycastMinionHit.collider.gameObject);
+                }
             }
         } else if (raycastBossHit.collider != null)
         {

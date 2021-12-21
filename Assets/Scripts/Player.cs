@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private float jumpGroundThreshold = 1;
 
     public int health;
+    private int maxHealth;
 
     public bool isDead = false;
 
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         health = 4;
+        maxHealth = health;
 
         playerCamera = Camera.main;
 
@@ -184,11 +186,8 @@ public class Player : MonoBehaviour
         RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
         if (hit2D.collider == null)
         {
-            
+
             isGrounded = false;
-        }else
-        {
-            Debug.Log(hit2D.collider + " " + Time.time);
         }
         Debug.DrawRay(rayOrigin, rayDirection * 100, Color.yellow);
     }
@@ -237,17 +236,24 @@ public class Player : MonoBehaviour
 
     private void CheckHit(RaycastHit2D playerHit)
     {
-        //if (playerHit.collider.CompareTag("MedKit"))
-        {
-            Debug.Log("Medkit");
-        }
         if (playerHit.collider != null)
         {
+            if (playerHit.collider.CompareTag("MedKit"))
+            {
+                if (health < maxHealth)
+                {
+                    health++;
+                }
+                    Destroy(playerHit.collider.gameObject);
+            }
+            else
+            {
+                velocity.x -= velocity.x * 0.1f;
+                health--;
+                Destroy(playerHit.collider.gameObject);
+                CheckifDead();
+            }
             //Set hurt animation
-            velocity.x -= velocity.x * 0.1f;
-            health--;
-            Destroy(playerHit.collider.gameObject);
-            CheckifDead();
         }
     }
 
