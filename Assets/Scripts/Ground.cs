@@ -15,6 +15,10 @@ public class Ground : MonoBehaviour
 
     [SerializeField]
     private GameObject minion;
+    [SerializeField]
+    private GameObject GreenHealthKit;
+    [SerializeField]
+    private GameObject redHealthKit;
     
     private void Awake()
     {
@@ -107,16 +111,26 @@ public class Ground : MonoBehaviour
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
 
 
-        float minionNum = Random.Range(0, 3);
+        float minionNum = Random.Range(0, 2);
         for (int i=0; i< minionNum; i++)
         {
-            GenerateMinion(go, goGround, goCollider);
+            GenerateMinion(go, goGround, goCollider, minion);
+        }
+        float greenHealthNum = Random.Range(0, 2);
+        for (int i=0; i< greenHealthNum; i++)
+        {
+            GenerateMinion(go, goGround, goCollider, GreenHealthKit);
+        }
+        float redHealthNum = Random.Range(0, 2);
+        for (int i=0; i< redHealthNum; i++)
+        {
+            GenerateMinion(go, goGround, goCollider, redHealthKit);
         }
     }
 
-    private void GenerateMinion(GameObject go, Ground goGround, BoxCollider2D goCollider)
+    private void GenerateMinion(GameObject go, Ground goGround, BoxCollider2D goCollider, GameObject gameObjectToSpawn)
     {
-        GameObject goMinion = Instantiate(minion);
+        GameObject goMinion = Instantiate(gameObjectToSpawn);
         float y = goGround.groundHeight - 2.5f;
         float halfWidth = goCollider.size.x / 2 - 1;
         float left = go.transform.position.x - halfWidth;

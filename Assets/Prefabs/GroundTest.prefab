@@ -846,6 +846,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundHeight: 0
   minion: {fileID: 9187072555623492258, guid: 22571cad71d579045b93b6ee2430e873, type: 3}
+  GreenHealthKit: {fileID: 6579234757580353832, guid: 61a3b3972a51c5947a048d7492ca97b3,
+    type: 3}
+  redHealthKit: {fileID: 5460481765687524589, guid: fe78204b68d675048b88fcd72da8108b,
+    type: 3}
 --- !u!61 &3362561345547705257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -859,7 +863,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.9783077, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -870,5 +874,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 50, y: 50}
+  m_Size: {x: 46.593273, y: 50}
   m_EdgeRadius: 0

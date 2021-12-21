@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private float jumpGroundThreshold = 1;
 
     public int health;
+    private int maxHealth;
 
     public bool isDead = false;
 
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         health = 4;
+        maxHealth = health;
 
         playerCamera = Camera.main;
 
@@ -184,11 +186,8 @@ public class Player : MonoBehaviour
         RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
         if (hit2D.collider == null)
         {
-            
+
             isGrounded = false;
-        }else
-        {
-            Debug.Log(hit2D.collider + " " + Time.time);
         }
         Debug.DrawRay(rayOrigin, rayDirection * 100, Color.yellow);
     }
@@ -221,18 +220,43 @@ public class Player : MonoBehaviour
         Vector2 playerOrigin = new Vector2(transform.position.x, transform.position.y - 3.5f);
         Vector2 playerDir = Vector2.right;
         float playerRayDistance = velocity.x * Time.fixedDeltaTime;
-        RaycastHit2D playerHit = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        RaycastHit2D playerHitDown = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        RaycastHit2D playerHitMid = Physics2D.Raycast(playerOrigin, playerDir, playerRayDistance, minionLayerMask);
+        RaycastHit2D playerHitUp = Physics2D.Raycast(playerOrigin + new Vector2(0, 4), playerDir, playerRayDistance, minionLayerMask);
         Debug.DrawRay(playerOrigin, playerDir * playerRayDistance, Color.green);
+        Debug.DrawRay(playerOrigin + new Vector2(0, 2), playerDir * playerRayDistance, Color.green);
+        Debug.DrawRay(playerOrigin + new Vector2(0, 4), playerDir * playerRayDistance, Color.green);
 
+        CheckHit(playerHitDown);
+        if (playerHitDown.collider == null)
+            CheckHit(playerHitMid);
+        if (playerHitDown.collider == null && playerHitMid.collider == null)
+            CheckHit(playerHitUp);
+    }
+
+    private void CheckHit(RaycastHit2D playerHit)
+    {
         if (playerHit.collider != null)
         {
+            if (playerHit.collider.CompareTag("MedKit"))
+            {
+                if (health < maxHealth)
+                {
+                    health++;
+                }
+                    Destroy(playerHit.collider.gameObject);
+            }
+            else
+            {
+                velocity.x -= velocity.x * 0.1f;
+                health--;
+                Destroy(playerHit.collider.gameObject);
+                CheckifDead();
+            }
             //Set hurt animation
-            velocity.x -= velocity.x * 0.1f;
-            health--;
-            Destroy(playerHit.collider.gameObject);
-            CheckifDead();
         }
     }
+
 
     private float GroundHeight(Vector2 pos)
     {
