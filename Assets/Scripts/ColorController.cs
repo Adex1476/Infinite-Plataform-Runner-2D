@@ -26,7 +26,6 @@ public class ColorController : MonoBehaviour
     void Update()
     {     
         if(player.distance/contador > minRange && player.distance/contador < maxRange){
-            Debug.Log(player.distance);
             contador++;
             colorType++;
             colorType = (colorType > 3) ? 0 : colorType;

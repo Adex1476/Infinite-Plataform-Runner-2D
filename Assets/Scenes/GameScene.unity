@@ -2466,7 +2466,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054411935}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7d4baa5559c7bcd4aa627788cfb62f99, type: 3}
@@ -2955,6 +2955,11 @@ PrefabInstance:
       propertyPath: dataPlayer
       value: 
       objectReference: {fileID: 502433947}
+    - target: {fileID: 8860968351287493560, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
+        type: 3}
+      propertyPath: shootCDTime
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8860968351287493560, guid: b57ec8fd9daf5c447bbe22de1313ce4d,
         type: 3}
       propertyPath: bulletUIAnimator

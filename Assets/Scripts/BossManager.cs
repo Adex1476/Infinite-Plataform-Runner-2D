@@ -17,12 +17,7 @@ public class BossManager : MonoBehaviour
     private GameObject bullet;
 
     private int moveCounter;
-
-    [SerializeField]
-    private int health;
-
     float direction = -0.1f;
-    [SerializeField]
     private float velocity = 1000;
     private int maxCounter = 100;
 
@@ -34,6 +29,12 @@ public class BossManager : MonoBehaviour
     private float bulletForce = 30;
     [SerializeField]
     private GameObject flyingMinion;
+    [SerializeField]
+    private int health;
+    [SerializeField]
+    private int healthToChangeToSecondFase;
+    [SerializeField]
+    private int healthToChangeToThirdFase;
     private bool didSpawnMinion = false;
 
 
@@ -45,11 +46,9 @@ public class BossManager : MonoBehaviour
 
         moveCounter = 0;
 
-        health = 30;
-
         bossFase = BossFase.Fase0;
 
-        StartCoroutine(ShootCooldown());
+        StartCoroutine(ShootCooldown(shootCD - 2));
     }
 
     // Update is called once per frame
@@ -66,22 +65,25 @@ public class BossManager : MonoBehaviour
             {
                 case BossFase.Fase0:
                     BossMovement();
-                    BossShooting();
-                    ChangeFase(20, BossFase.Fase1);
+                    BossShooting(shootCD);
+                    ChangeFase(healthToChangeToSecondFase, BossFase.Fase1);
                     break;
                 case BossFase.Fase1:
-                    GetComponent<SpriteRenderer>().color = Color.cyan;
+                    GetComponent<SpriteRenderer>().color = Color.cyan; //DEBUG
                     //Spawn flying enemies
                     BossMovement();
                     SpawnFlyingMinion();
-                    ChangeFase(10, BossFase.Fase2);
+                    ChangeFase(healthToChangeToThirdFase, BossFase.Fase2);
                     break;
                 case BossFase.Fase2:
                     //Last fase
-                    BossMovement();
-                    SpawnFlyingMinion();
-                    BossShooting();
-                    GetComponent<SpriteRenderer>().color = Color.red;
+                    if (health > 0)
+                    {
+                        BossMovement();
+                        SpawnFlyingMinion();
+                        BossShooting(shootCD - 2);
+                        GetComponent<SpriteRenderer>().color = Color.red; //DEBUG
+                    }
                     CheckHealth();
                     break;
             }
@@ -116,7 +118,10 @@ public class BossManager : MonoBehaviour
     {
         if (health < 1)
         {
-            DestroyBoss();
+            GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<Animator>().SetBool("isDead", true);
+            gameObject.layer = 0;
+            //DestroyBoss();
         }
 
     }
@@ -147,20 +152,20 @@ public class BossManager : MonoBehaviour
         transform.position = bossPos;
     }
 
-    void BossShooting()
+    void BossShooting(float cooldown)
     {
         if (canShoot)
         {
             GameObject shoot = Instantiate(bullet, transform.position, Quaternion.identity);
             shoot.GetComponent<Rigidbody2D>().AddForce((GameObject.Find("Player").transform.position - transform.position).normalized * bulletForce, ForceMode2D.Impulse);
-            StartCoroutine(ShootCooldown());
+            StartCoroutine(ShootCooldown(cooldown));
         }
     }
 
-    private IEnumerator ShootCooldown()
+    private IEnumerator ShootCooldown(float cooldown)
     {
         canShoot = false;
-        yield return new WaitForSeconds(shootCD);
+        yield return new WaitForSeconds(cooldown);
         canShoot = true;
     }
 }

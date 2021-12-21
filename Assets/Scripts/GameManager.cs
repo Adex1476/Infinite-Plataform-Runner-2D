@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         playerData = playerData.GetComponent<Player>();
-        healthBar = GameObject.Find("Health Bar");
+        healthBar = GameObject.Find("HealthBar");
         healthBar.GetComponent<HealthBar>().SetMaxHealth(playerData.health);
     }
 

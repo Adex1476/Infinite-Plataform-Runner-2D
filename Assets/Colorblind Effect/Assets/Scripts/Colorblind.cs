@@ -26,8 +26,9 @@ using UnityEditor;
             if (Debug.isDebugBuild) Debug.Log("Colorblind Effect Error: " + error);
         }
 
-		// initialization method
-        void Start()
+    // initialization method
+    [System.Obsolete]
+    void Start()
         {
 			// if shader is not set, try to find it first
             if (colorblindShader == null) colorblindShader = Shader.Find("Hidden/Wilberforce/Colorblind");

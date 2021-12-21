@@ -24,13 +24,14 @@ public class BulletManager : MonoBehaviour
     private bool canShoot = true;
 
     [SerializeField]
-    private float shootCDTime;
+    private float shootCDTime; //Limitar a 0.8 per tal de lligar amb la animació de UI
 
     [SerializeField]
     private Animator bulletUIAnimator;
 
     [SerializeField]
     private int totalLoad = 6;
+
     [SerializeField]
     private int bulletIndex;
 
@@ -53,7 +54,6 @@ public class BulletManager : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Mouse0))
             {                 
-
                 clickDirection = ClickedDirection();
 
                 if (clickDirection.x > 0)
