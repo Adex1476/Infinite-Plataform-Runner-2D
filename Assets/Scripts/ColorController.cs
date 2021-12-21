@@ -25,7 +25,11 @@ public class ColorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        if(player.distance/contador > minRange && player.distance/contador < maxRange){
+        if (player.isDead)
+        {
+            GetComponent<Colorblind>().Type = 0;
+        }
+        if (player.distance/contador > minRange && player.distance/contador < maxRange){
             contador++;
             colorType++;
             colorType = (colorType > 3) ? 0 : colorType;
