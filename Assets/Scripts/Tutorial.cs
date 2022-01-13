@@ -11,19 +11,22 @@ public enum TutorialFase {
 
 public class Tutorial : MonoBehaviour
 {
-    Text tutorialText;
-
     TutorialFase tutorialFase;
-    // Start is called before the first frame update
+    Text tutorialText;
+    float tutorialTime;
+    float tutorialStartTime;
+
+
     void Start()
     {
         tutorialText = GetComponent<Text>();
         tutorialFase = TutorialFase.Start;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+
         switch (tutorialFase)
         {
             case TutorialFase.Start:
@@ -38,11 +41,13 @@ public class Tutorial : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     tutorialFase = TutorialFase.Shoot;
+                    tutorialStartTime = Time.time;
                 }
                 break;
             case TutorialFase.Shoot:
                 tutorialText.text = "Click the Screen to Shoot";
-                if (Input.GetKey(KeyCode.Mouse0))
+                tutorialTime = Time.time - tutorialStartTime;
+                if (Input.GetKey(KeyCode.Mouse0) || tutorialTime > 10)
                 {
                     Destroy(gameObject);
                 }
