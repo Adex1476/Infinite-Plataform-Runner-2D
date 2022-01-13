@@ -12,7 +12,7 @@ public enum BossFase
 public class BossManager : MonoBehaviour
 {
     private Player player;
-
+    GameManager gameManager;
     [SerializeField]
     private GameObject bullet;
 
@@ -43,6 +43,7 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         moveCounter = 0;
 
@@ -59,7 +60,7 @@ public class BossManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!player.isDead)
+        if (!player.isDead && !gameManager.isPaused)
         {
             switch (bossFase)
             {

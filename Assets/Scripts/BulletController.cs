@@ -20,6 +20,8 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    GameManager gameManager;
+
     [SerializeField]
     private GameObject boss;
 
@@ -32,6 +34,7 @@ public class BulletController : MonoBehaviour
     void Awake()
     {
         bulletManager = GameObject.Find("BulletManager").GetComponent<BulletManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         boss = GameObject.Find("Boss(Clone)");
         clickDirecction = bulletManager.clickDirection;
         clickDirecction = new Vector3(clickDirecction.x, clickDirecction.y, 0);
@@ -50,15 +53,18 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveBullet();
+        if (!gameManager.isPaused)
+        {
+            MoveBullet();
+            BulletHit();
+        }
 
         Debug.DrawRay(transform.position, clickDirecction * speed, Color.green);
 
         //Vector3 bulletPosition = gameObject.transform.position;
         //Position = Position + vector / magnitud del vector * velocitat
-        
         // Col·lisió de la bullet amb el minion
-        BulletHit();
+        
 
         // Bullet dins dels marges de la camera
         DestroyBulletIfOut();

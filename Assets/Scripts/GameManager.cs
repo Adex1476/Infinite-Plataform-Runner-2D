@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-
+    
     [SerializeField]
     private GameObject Player;
     [SerializeField]
@@ -15,6 +16,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject healthBar;
+
+    
+    public bool isPaused = false;
+
+    [SerializeField]
+    private GameObject pauseMenu;
 
     public static GameManager Instance
     {
@@ -47,6 +54,21 @@ public class GameManager : MonoBehaviour
     {
         GameObject.Find("HealthBar").GetComponent<HealthBar>().SetHealth(playerData.health);
         PlayerDeath();
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Pause();
+        }
+
+        pauseMenu.SetActive(isPaused);
+
+        Player.GetComponent<Animator>().enabled = !isPaused;
+
+    }
+
+    private void Pause()
+    {
+        isPaused = !isPaused;
     }
 
     private void PlayerDeath()

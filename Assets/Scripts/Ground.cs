@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     Player player;
-
+    GameManager gameManager;
     public float groundHeight;
     private float groundRight;
     private float screenRight;
@@ -23,6 +23,7 @@ public class Ground : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         groundCollider = GetComponent<BoxCollider2D>(); 
         groundHeight = transform.position.y + (groundCollider.size.y / 2);
         screenRight = Camera.main.transform.position.x * 2;
@@ -40,7 +41,7 @@ public class Ground : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!player.isDead)
+        if (!player.isDead && !gameManager.isPaused)
         {
             Vector2 pos = transform.position;
             pos.x -= MoveGround(pos);

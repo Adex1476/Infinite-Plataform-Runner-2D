@@ -10,9 +10,12 @@ public class Parallax : MonoBehaviour
 
     Player player;
 
+    GameManager gameManager;
+
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!player.isDead)
+        if (!player.isDead && !gameManager.isPaused)
         {
             //Adapta la velocitat segons la velocitat del player i la profunditat de la capa.
             float realVelocity = PerceivedVelocity();
