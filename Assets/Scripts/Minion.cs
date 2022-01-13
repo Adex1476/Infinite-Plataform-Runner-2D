@@ -6,10 +6,12 @@ using UnityEngine;
 public class Minion : MonoBehaviour
 {
     Player player;
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class Minion : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!player.isDead)
+        if (!player.isDead && !gameManager.isPaused)
         {
             Vector2 pos = transform.position;
             

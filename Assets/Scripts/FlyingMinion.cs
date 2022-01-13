@@ -7,13 +7,14 @@ using UnityEngine;
 public class FlyingMinion : MonoBehaviour
 {
     Player player;
-
+    GameManager gameManager;
     public Vector3 position;
     public Vector3 direction;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class FlyingMinion : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!player.isDead)
+        if (!player.isDead && !gameManager.isPaused)
         {
             Vector2 pos = transform.position;
             

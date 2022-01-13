@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
+    GameManager gameManager;
     [SerializeField]
     private GameObject bullet;
 
@@ -41,6 +42,7 @@ public class BulletManager : MonoBehaviour
         //playerPosition = player.transform.position;
         //Instantiate(bullet, playerPosition, Quaternion.identity);
         dataPlayer = player.GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         totalLoad = 6;
         bulletIndex = totalLoad;
     }
@@ -48,7 +50,7 @@ public class BulletManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dataPlayer.isDead)
+        if (!dataPlayer.isDead && !gameManager.isPaused)
         {
             playerPosition = player.transform.position;
 

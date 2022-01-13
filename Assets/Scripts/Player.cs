@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    private GameManager gameManager;
     public float gravity;
 
     public Vector2 velocity;
@@ -80,6 +80,8 @@ public class Player : MonoBehaviour
         playerCamera = Camera.main;
 
         initialCameraSize = playerCamera.orthographicSize;
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -102,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isStarted)
+        if (isStarted && !gameManager.isPaused)
         {
             Vector2 pos = transform.position;
 
@@ -244,7 +246,7 @@ public class Player : MonoBehaviour
                 {
                     health++;
                 }
-                    Destroy(playerHit.collider.gameObject);
+                Destroy(playerHit.collider.gameObject);
             }
             else
             {
