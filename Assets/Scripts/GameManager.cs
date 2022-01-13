@@ -64,9 +64,11 @@ public class GameManager : MonoBehaviour
 
         Player.GetComponent<Animator>().enabled = !isPaused;
 
+
+
     }
 
-    private void Pause()
+    public void Pause()
     {
         isPaused = !isPaused;
     }
