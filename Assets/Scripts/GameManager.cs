@@ -12,14 +12,10 @@ public class GameManager : MonoBehaviour
     private GameObject Player;
     [SerializeField]
     private Player playerData;
-    private GameObject EndGameUI;
-
     [SerializeField]
     private GameObject healthBar;
-
     
     public bool isPaused = false;
-
     [SerializeField]
     private GameObject pauseMenu;
 
@@ -53,33 +49,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GameObject.Find("HealthBar").GetComponent<HealthBar>().SetHealth(playerData.health);
-        PlayerDeath();
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !playerData.isDead)
         {
             Pause();
         }
 
         pauseMenu.SetActive(isPaused);
 
-        Player.GetComponent<Animator>().enabled = !isPaused;
-
-
+        if (!playerData.isDead) 
+            Player.GetComponent<Animator>().enabled = !isPaused;
 
     }
 
     public void Pause()
     {
         isPaused = !isPaused;
-    }
-
-    private void PlayerDeath()
-    {
-        /*if ((playerData.health <= 0) || (Player.GetComponent<Transform>().position.y < Player.GetComponent<Player>().playerCamera.transform.position.y - 18))
-        {
-            EndGameUI.SetActive(true);
-            Player.GetComponent<Player>().isDead = true;
-        }*/
-
     }
 }

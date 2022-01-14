@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool isStarted = false;
+
+    private bool hurt = false;
 
 
     // Start is called before the first frame update
@@ -253,12 +256,19 @@ public class Player : MonoBehaviour
                 velocity.x -= velocity.x * 0.1f;
                 health--;
                 Destroy(playerHit.collider.gameObject);
+                StartCoroutine(HurtPlayer());
                 CheckifDead();
             }
             //Set hurt animation
         }
     }
 
+    private IEnumerator HurtPlayer()
+    {
+        hurt = true;
+        yield return new WaitForSeconds(0.15f);
+        hurt = false;
+    }
 
     private float GroundHeight(Vector2 pos)
     {
@@ -376,6 +386,7 @@ public class Player : MonoBehaviour
         animator.SetFloat("VelocityY", velocity.y);
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("VelocityX", velocity.x);
+        animator.SetBool("hurt", hurt);
     }
 
 
