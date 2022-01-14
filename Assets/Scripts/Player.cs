@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         initialCameraSize = playerCamera.orthographicSize;
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -247,15 +248,17 @@ public class Player : MonoBehaviour
             {
                 if (health < maxHealth)
                 {
+                EffectAudioController.PlaySound("heal");
                     health++;
-                }
                 Destroy(playerHit.collider.gameObject);
+                }
             }
             else
             {
                 velocity.x -= velocity.x * 0.1f;
                 health--;
                 Destroy(playerHit.collider.gameObject);
+                EffectAudioController.PlaySound("hit");
                 StartCoroutine(HurtPlayer());
                 CheckifDead();
             }

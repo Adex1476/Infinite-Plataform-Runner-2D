@@ -159,6 +159,7 @@ public class BossManager : MonoBehaviour
         {
             GameObject shoot = Instantiate(bullet, transform.position, Quaternion.identity);
             shoot.GetComponent<Rigidbody2D>().AddForce((GameObject.Find("Player").transform.position - transform.position).normalized * bulletForce, ForceMode2D.Impulse);
+            EffectAudioController.PlaySound("shootboss");
             StartCoroutine(ShootCooldown(cooldown));
         }
     }
