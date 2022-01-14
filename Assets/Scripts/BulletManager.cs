@@ -64,6 +64,7 @@ public class BulletManager : MonoBehaviour
                     {
                         bulletIndex--;
                         PullTrigger();
+                        EffectAudioController.PlaySound("playershoot");
                         StartCoroutine(ShootColdown());
 
                     }
