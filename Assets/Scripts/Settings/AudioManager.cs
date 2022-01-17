@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
 
-    AudioSource audioSource;
+    AudioSource audioSourceMusic;
+    AudioSource audioSourceFX;
+
     public Sprite[] img;
     // Start is called before the first frame update
     [SerializeField] private Image mutear;
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSourceMusic = GetComponent<AudioSource>();
+        audioSourceFX = GameObject.Find("AudioEffectManager").GetComponent<AudioSource>();
         mutear= GameObject.Find("Mute").GetComponent<Image>();
     }
 
@@ -21,8 +24,8 @@ public class AudioManager : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Q)){
             
-            audioSource.mute= !audioSource.mute;
-            
+            audioSourceMusic.mute= !audioSourceMusic.mute;
+            audioSourceFX.mute=!audioSourceFX.mute;
             
         }
     }
@@ -30,8 +33,9 @@ public class AudioManager : MonoBehaviour
     public void mute()
     {
         
-        audioSource.mute= !audioSource.mute;
-        if(audioSource.mute==false){
+        audioSourceMusic.mute= !audioSourceMusic.mute;
+        audioSourceFX.mute=!audioSourceFX.mute;
+        if(audioSourceMusic.mute==false){
             mutear.sprite= img[0];
         }else{
             mutear.sprite= img[1];
