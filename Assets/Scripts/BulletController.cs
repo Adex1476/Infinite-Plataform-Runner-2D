@@ -90,6 +90,7 @@ public class BulletController : MonoBehaviour
             {
                 raycastMinionHit.collider.gameObject.GetComponent<Animator>().SetBool("isDead", true);
                 raycastMinionHit.collider.gameObject.layer = 0;
+                EffectAudioController.PlaySound("miniondeath");
                 Destroy(gameObject);
             }
             else
@@ -105,6 +106,7 @@ public class BulletController : MonoBehaviour
             if (raycastBossHit.collider.gameObject)
             {
                 boss.GetComponent<BossManager>().DecreaseHealth(damage);
+                EffectAudioController.PlaySound("bosshit");
                 Destroy(gameObject);
             }
         }

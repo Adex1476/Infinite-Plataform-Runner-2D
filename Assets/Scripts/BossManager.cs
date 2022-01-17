@@ -120,6 +120,7 @@ public class BossManager : MonoBehaviour
         if (health < 1)
         {
             GetComponent<SpriteRenderer>().color = Color.white;
+            EffectAudioController.PlaySound("bossdeath");
             GetComponent<Animator>().SetBool("isDead", true);
             gameObject.layer = 0;
             //DestroyBoss();
