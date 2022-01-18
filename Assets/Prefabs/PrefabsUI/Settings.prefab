@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 101, y: -10.214996}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 109.3, y: -9.5}
+  m_SizeDelta: {x: 40.37207, y: 40.37207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7343115418224897895
 CanvasRenderer:
@@ -319,8 +319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 101, y: 49}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 109.30011, y: 50.260014}
+  m_SizeDelta: {x: 40.37207, y: 40.37207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7123807730986379375
 CanvasRenderer:
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.12
 --- !u!114 &42639347565125022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,10 +846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170a0204ed32e7f46bfca01919996472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fxButton: {fileID: 1392942266133966133}
-  musicButton: {fileID: 42639347565125022}
-  fxMute: 0
-  musicMute: 0
+  muteMusic: {fileID: 0}
+  muteFX: {fileID: 0}
 --- !u!1 &8103535618720136853
 GameObject:
   m_ObjectHideFlags: 0
