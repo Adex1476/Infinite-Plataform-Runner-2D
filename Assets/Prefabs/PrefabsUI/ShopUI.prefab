@@ -158,7 +158,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Price
+  m_Text: ???
 --- !u!1 &5016840960988936448
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object description
+  m_Text: ??????
 --- !u!1 &5016840961102806241
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +353,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.12358093, y: 0.13819885}
-  m_SizeDelta: {x: 252.23816, y: 27.679657}
+  m_AnchoredPosition: {x: -0.1645, y: 0.13819885}
+  m_SizeDelta: {x: 116.480896, y: 27.679657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5016840961185229961
 CanvasRenderer:
@@ -396,7 +396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object name
+  m_Text: ???
 --- !u!1 &5016840961233149082
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.023773193, y: -0.010513306}
+  m_AnchoredPosition: {x: 0.023773193, y: -0.02}
   m_SizeDelta: {x: 318.83627, y: 47.059845}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5016840961233149077
@@ -463,7 +463,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4f8aa6b0a8b28654f9376b9116677810, type: 3}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: cOINS
+  m_Text: 0 cOINS
 --- !u!1 &5016840961349756395
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +541,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4f8aa6b0a8b28654f9376b9116677810, type: 3}
-    m_FontSize: 15
+    m_FontSize: 8
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -552,7 +552,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object description
+  m_Text: A magnet that attrack the coins.
 --- !u!1 &5016840961359739507
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,8 +784,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.20944214, y: -0.059}
-  m_SizeDelta: {x: 311.6113, y: 43.759857}
+  m_AnchoredPosition: {x: 0.1999, y: -0.059}
+  m_SizeDelta: {x: 280.0427, y: 43.759857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5016840961548611747
 CanvasRenderer:
@@ -827,7 +827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Price
+  m_Text: 150 C
 --- !u!1 &5016840961642849700
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object description
+  m_Text: ??????
 --- !u!1 &5016840961787424115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,8 +1112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.20883179, y: -0.061}
-  m_SizeDelta: {x: 311.6113, y: 43.759857}
+  m_AnchoredPosition: {x: 0.1942, y: -0.061}
+  m_SizeDelta: {x: 263.2061, y: 43.759857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5016840961884732861
 CanvasRenderer:
@@ -1155,7 +1155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Price
+  m_Text: ' 500 C'
 --- !u!1 &5016840962030313556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 5016840962030313556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.22872679, y: -0.0060088085, z: 0}
-  m_LocalScale: {x: 0.4, y: 2.5, z: 1}
+  m_LocalScale: {x: 0.2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 5016840962112871960}
   m_RootOrder: 0
@@ -1226,8 +1226,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4532114073746202998, guid: 2eb655fe7dddf554791f1d878a9959cf,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07e6b3a706daa684f931ed1007b6fde5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1358,8 +1357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.12327576, y: 0.11488342}
-  m_SizeDelta: {x: 252.23816, y: 27.679657}
+  m_AnchoredPosition: {x: -0.1663, y: 0.11488342}
+  m_SizeDelta: {x: 109.73221, y: 27.679657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5016840962214583505
 CanvasRenderer:
@@ -1401,7 +1400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object name
+  m_Text: ???
 --- !u!1 &5016840962253172925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1478,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Price
+  m_Text: ???
 --- !u!1 &5016840962321316055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1644,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4f8aa6b0a8b28654f9376b9116677810, type: 3}
-    m_FontSize: 15
+    m_FontSize: 8
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
@@ -1656,7 +1655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object description
+  m_Text: Object that makes you untouchable for the enemies during a certain time.
 --- !u!1 &5016840962373864197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,8 +1763,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5016840962397297803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2296965, y: -0.00089009875, z: 0}
-  m_LocalScale: {x: 0.4, y: 2.5, z: 1}
+  m_LocalPosition: {x: -0.239, y: -0.01, z: 0}
+  m_LocalScale: {x: 0.4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 5016840961787424109}
   m_RootOrder: 0
@@ -1809,8 +1808,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4532114073746202998, guid: 2eb655fe7dddf554791f1d878a9959cf,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4531bbb3687626489fadb51118ae934, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1855,8 +1853,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1247406, y: 0.1081543}
-  m_SizeDelta: {x: 252.23816, y: 27.679657}
+  m_AnchoredPosition: {x: -0.1228, y: 0.1081543}
+  m_SizeDelta: {x: 258.49286, y: 27.679657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5016840962531324869
 CanvasRenderer:
@@ -1898,7 +1896,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object name
+  m_Text: Untouchable
 --- !u!1 &5016840962567544950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2144,4 +2142,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Object name
+  m_Text: Coin Magnet
