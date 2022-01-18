@@ -22,17 +22,14 @@ public class AudioManager : MonoBehaviour
 
         audioSourceFX.mute = gameSound.soundFx;
         audioSourceMusic.mute = gameSound.music;
+        ChangeImage();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKey(KeyCode.Q)){
-            gameSound.soundFx = !gameSound.soundFx;
-            gameSound.music = !gameSound.music;
-
-            audioSourceMusic.mute = gameSound.music;
-            audioSourceFX.mute = gameSound.soundFx;
+            mute();
         }
     }
 
@@ -43,11 +40,19 @@ public class AudioManager : MonoBehaviour
 
         audioSourceMusic.mute = gameSound.music;
         audioSourceFX.mute = gameSound.soundFx;
-        if (audioSourceMusic.mute==false && audioSourceFX.mute == false)
+        ChangeImage();
+    }
+
+
+    public void ChangeImage()
+    {
+        if (audioSourceMusic.mute == false && audioSourceFX.mute == false)
         {
-            mutear.sprite= img[0];
-        }else{
-            mutear.sprite= img[1];
+            mutear.sprite = img[0];
+        }
+        else
+        {
+            mutear.sprite = img[1];
         }
     }
 }
