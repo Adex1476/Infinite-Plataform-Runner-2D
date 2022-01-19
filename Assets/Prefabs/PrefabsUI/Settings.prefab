@@ -120,12 +120,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 8198336861911613996}
+        m_MethodName: SoundFx
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -403,7 +403,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8849556913289726657}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8198336861911613996}
+        m_MethodName: Music
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5416754394194290041
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,11 +859,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170a0204ed32e7f46bfca01919996472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muteMusic: {fileID: 0}
-  muteFx: {fileID: 0}
-  muteFxImg: {fileID: 0}
-  muteMusicImg: {fileID: 0}
-  gameSound: {fileID: 0}
+  muteMusic: {fileID: 42639347565125022}
+  muteFx: {fileID: 1392942266133966133}
+  muteFxImg: {fileID: 4223873812201968249}
+  muteMusicImg: {fileID: 7951962224073891457}
+  gameSound: {fileID: 11400000, guid: 48c0b7b56c1ee4644bd5f74fc9ba1c9e, type: 2}
 --- !u!1 &8103535618720136853
 GameObject:
   m_ObjectHideFlags: 0

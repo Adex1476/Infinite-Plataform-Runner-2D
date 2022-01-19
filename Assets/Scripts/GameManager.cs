@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     private GameObject healthBar;
     
     public bool isPaused = false;
-    [SerializeField]
-    private GameObject pauseMenu;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject settings;
+    private bool settingsActive;
 
     public static GameManager Instance
     {
@@ -55,15 +56,29 @@ public class GameManager : MonoBehaviour
             Pause();
         }
 
-        pauseMenu.SetActive(isPaused);
+        if (!settingsActive)
+            pauseMenu.SetActive(isPaused);
 
         if (!playerData.isDead) 
             Player.GetComponent<Animator>().enabled = !isPaused;
 
     }
 
-    public void Pause()
+    public void Pause() => isPaused = !isPaused;
+
+    public void Settings()
     {
-        isPaused = !isPaused;
+        settingsActive = true;
+        settings.SetActive(true);
+        pauseMenu.SetActive(false);
     }
+
+    public void SettingsNotActive()
+    {
+        settingsActive = false;
+        isPaused = true;
+    }
+
+
+
 }
