@@ -31,6 +31,9 @@ public class AudioManager : MonoBehaviour
         if(Input.GetKey(KeyCode.Q)){
             mute();
         }
+
+        audioSourceMusic.mute = gameSound.music;
+        audioSourceFX.mute = gameSound.soundFx;
     }
 
     public void mute()
@@ -38,8 +41,7 @@ public class AudioManager : MonoBehaviour
         gameSound.soundFx = !gameSound.soundFx;
         gameSound.music = !gameSound.music;
 
-        audioSourceMusic.mute = gameSound.music;
-        audioSourceFX.mute = gameSound.soundFx;
+        
         ChangeImage();
     }
 
