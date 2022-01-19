@@ -11,7 +11,8 @@ public class Settings : MonoBehaviour
     [SerializeField] private Button muteFx;
     [SerializeField] private Image muteFxImg;
     [SerializeField] private Image muteMusicImg;
-    public GameSound gameSound;
+    [SerializeField] private GameSound gameSound;
+    [SerializeField] private GameObject pauseGO;
 
    
     void Start()
@@ -27,7 +28,11 @@ public class Settings : MonoBehaviour
     }
 
     public void Music() => gameSound.music = !gameSound.music;
+
     public void SoundFx() => gameSound.soundFx = !gameSound.soundFx;
+
+    public void Back() => gameObject.SetActive(false);
+
 
     
 }

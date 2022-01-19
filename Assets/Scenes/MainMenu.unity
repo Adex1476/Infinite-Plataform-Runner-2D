@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &62629340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-    type: 3}
-  m_PrefabInstance: {fileID: 8103535618642687370}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &138436768
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,18 +771,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635558070}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &661242438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
-    type: 3}
-  m_PrefabInstance: {fileID: 8103535618642687370}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 170a0204ed32e7f46bfca01919996472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &770499769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1966,18 +1942,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 55
   tileWidth: 352
---- !u!114 &2039414543 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7951962224073891457, guid: 12b1432ee4815524aaaba137bc062680,
-    type: 3}
-  m_PrefabInstance: {fileID: 8103535618642687370}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8103535618642687370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1985,56 +1949,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 661242438}
-    - target: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Music
-      objectReference: {fileID: 0}
-    - target: {fileID: 42639347565125022, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392942266133966133, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392942266133966133, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 661242438}
-    - target: {fileID: 1392942266133966133, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SoundFx
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392942266133966133, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4223873812201968249, guid: 12b1432ee4815524aaaba137bc062680,
         type: 3}
       propertyPath: m_Color.b
@@ -2300,32 +2214,6 @@ PrefabInstance:
       propertyPath: muteFX
       value: 
       objectReference: {fileID: 1204118038}
-    - target: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: muteFx
-      value: 
-      objectReference: {fileID: 1204118038}
-    - target: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: gameSound
-      value: 
-      objectReference: {fileID: 11400000, guid: 48c0b7b56c1ee4644bd5f74fc9ba1c9e,
-        type: 2}
-    - target: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: muteFxImg
-      value: 
-      objectReference: {fileID: 235053072}
-    - target: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: muteMusic
-      value: 
-      objectReference: {fileID: 62629340}
-    - target: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
-        type: 3}
-      propertyPath: muteMusicImg
-      value: 
-      objectReference: {fileID: 2039414543}
     - target: {fileID: 8198336861911613996, guid: 12b1432ee4815524aaaba137bc062680,
         type: 3}
       propertyPath: muteMusicimg
