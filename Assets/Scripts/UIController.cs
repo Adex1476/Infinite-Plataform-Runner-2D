@@ -10,20 +10,31 @@ public class UIController : MonoBehaviour
     
     Player player;
 
+    GameManager gameManager;
+
     GameObject results;
+
+    GameObject win;
 
     GameObject distGO;
 
-    Text finalDistanceText; 
+    Text finalDistanceText;
+
+    private int distance;
     private void Awake()
     {
+        distance = 0;
+        
         player = GameObject.Find("Player").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         distGO = GameObject.Find("distanceText");
         distanceText = distGO.GetComponent<Text>();
 
         finalDistanceText = GameObject.Find("FinalDistanceText").GetComponent<Text>();
         results = GameObject.Find("Results");
+        win = GameObject.Find("Win");
         results.SetActive(false);
+        win.SetActive(false);
     }
     
     
@@ -36,7 +47,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int distance = (int)player.distance;
+        distance = (int)player.distance;
         distanceText.text = distance + " m";
 
         if (player.isDead)
@@ -45,6 +56,13 @@ public class UIController : MonoBehaviour
             distGO.SetActive(false);
             finalDistanceText.text = distance + " pts";
         }
+    }
+
+    public void EndGame ()
+    {
+        gameManager.Win();
+        win.SetActive(true);
+        distGO.SetActive(false);
     }
 
 

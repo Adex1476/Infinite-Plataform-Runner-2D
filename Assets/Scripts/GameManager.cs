@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private GameObject healthBar;
     
     public bool isPaused = false;
+    public bool bossDefeated = false;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settings;
     private bool settingsActive;
@@ -66,6 +67,8 @@ public class GameManager : MonoBehaviour
 
     public void Pause() => isPaused = !isPaused;
 
+    public void Win() => bossDefeated = !bossDefeated;
+
     public void Settings()
     {
         settingsActive = true;
@@ -78,7 +81,4 @@ public class GameManager : MonoBehaviour
         settingsActive = false;
         isPaused = true;
     }
-
-
-
 }

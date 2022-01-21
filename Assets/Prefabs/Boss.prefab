@@ -51,9 +51,9 @@ MonoBehaviour:
   bulletForce: 60
   flyingMinion: {fileID: 9187072555623492258, guid: cdf913c28fff4b64893a8bb4a9ff542b,
     type: 3}
-  health: 30
-  healthToChangeToSecondFase: 20
-  healthToChangeToThirdFase: 10
+  health: 3
+  healthToChangeToSecondFase: 2
+  healthToChangeToThirdFase: 1
 --- !u!212 &3871468169950339718
 SpriteRenderer:
   m_ObjectHideFlags: 0

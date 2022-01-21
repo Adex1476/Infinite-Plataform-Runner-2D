@@ -12,6 +12,7 @@ public enum BossFase
 public class BossManager : MonoBehaviour
 {
     private Player player;
+    UIController uic;
     GameManager gameManager;
     [SerializeField]
     private GameObject bullet;
@@ -37,14 +38,12 @@ public class BossManager : MonoBehaviour
     private int healthToChangeToThirdFase;
     private bool didSpawnMinion = false;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        uic = GameObject.Find("Canvas").GetComponent<UIController>();
         moveCounter = 0;
 
         bossFase = BossFase.Fase0;
@@ -123,6 +122,7 @@ public class BossManager : MonoBehaviour
             EffectAudioController.PlaySound("bossdeath");
             GetComponent<Animator>().SetBool("isDead", true);
             gameObject.layer = 0;
+            uic.EndGame();
             //DestroyBoss();
         }
 
