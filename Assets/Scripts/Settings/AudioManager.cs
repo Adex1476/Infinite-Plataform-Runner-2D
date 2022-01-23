@@ -48,13 +48,13 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeImage()
     {
-        if (audioSourceMusic.mute == false && audioSourceFX.mute == false)
+        if (audioSourceMusic.mute && audioSourceFX.mute)
         {
-            mutear.sprite = img[0];
+            mutear.sprite = img[1];
         }
         else
         {
-            mutear.sprite = img[1];
+            mutear.sprite = img[0];
         }
     }
 }
