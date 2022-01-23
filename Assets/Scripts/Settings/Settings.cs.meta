@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 170a0204ed32e7f46bfca01919996472
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - muteMusic: {instanceID: 0}
+  - muteFx: {instanceID: 0}
+  - muteFxImg: {instanceID: 0}
+  - muteMusicImg: {instanceID: 0}
+  - gameSound: {fileID: 11400000, guid: 48c0b7b56c1ee4644bd5f74fc9ba1c9e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
