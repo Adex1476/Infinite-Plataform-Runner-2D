@@ -51,9 +51,9 @@ MonoBehaviour:
   bulletForce: 60
   flyingMinion: {fileID: 9187072555623492258, guid: cdf913c28fff4b64893a8bb4a9ff542b,
     type: 3}
-  health: 3
-  healthToChangeToSecondFase: 2
-  healthToChangeToThirdFase: 1
+  health: 30
+  healthToChangeToSecondFase: 20
+  healthToChangeToThirdFase: 10
 --- !u!212 &3871468169950339718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -129,18 +129,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.12635879, y: 0.08202117}
-      - {x: 0.03486461, y: 0.23229933}
-      - {x: -0.06723279, y: 0.23268163}
-      - {x: -0.10325186, y: 0.1260899}
-      - {x: -0.15513894, y: 0.030078426}
-      - {x: -0.15452875, y: 0.0007165307}
-      - {x: -0.12325708, y: -0.043617547}
-      - {x: -0.10218585, y: -0.15161356}
-      - {x: -0.09168406, y: -0.28520542}
-      - {x: -0.06774428, y: -0.318275}
-      - {x: 0.0786555, y: -0.32}
-      - {x: 0.12919335, y: -0.089999996}
+    - - {x: 0.095, y: 0.11}
+      - {x: 0.005, y: 0.22}
+      - {x: -0.074999996, y: 0.22}
+      - {x: -0.13499999, y: 0.19}
+      - {x: -0.185, y: 0.07}
+      - {x: -0.185, y: -0.06}
+      - {x: -0.005, y: -0.32}
+      - {x: 0.055, y: -0.32}
+      - {x: 0.114999995, y: -0.25}
+      - {x: 0.125, y: -0.06}
+      - {x: 0.125, y: -0.01}
 --- !u!95 &6670005647466079473
 Animator:
   serializedVersion: 3

@@ -6,40 +6,40 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
 
-    AudioSource audioSourceMusic;
-    AudioSource audioSourceFX;
-    public GameSound gameSound;
-    public Sprite[] img;
-    // Start is called before the first frame update
+    [SerializeField] AudioSource audioSourceMusic;
+    [SerializeField] AudioSource audioSourceFX;
+    [SerializeField] GameSound gameSound;
+    [SerializeField] Sprite[] img;
     [SerializeField] private Image mutear;
-
-
+    [SerializeField] private Slider musicVolume;
+    
     void Start()
     {
-        audioSourceMusic = GetComponent<AudioSource>();
-        audioSourceFX = GameObject.Find("AudioEffectManager").GetComponent<AudioSource>();
-        mutear= GameObject.Find("Mute").GetComponent<Image>();
-
-        audioSourceFX.mute = gameSound.soundFx;
-        audioSourceMusic.mute = gameSound.music;
+        audioSourceFX.mute = gameSound.soundFxMute;
+        audioSourceMusic.mute = gameSound.musicMute;
         ChangeImage();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Q)){
+        if(Input.GetKeyDown(KeyCode.Q)){
             mute();
         }
 
-        audioSourceMusic.mute = gameSound.music;
-        audioSourceFX.mute = gameSound.soundFx;
+        audioSourceMusic.mute = gameSound.musicMute;
+        audioSourceFX.mute = gameSound.soundFxMute;
+
+        if (musicVolume != null)
+            Debug.Log(musicVolume.value);
+
+        ChangeImage();  
     }
 
     public void mute()
     {
-        gameSound.soundFx = !gameSound.soundFx;
-        gameSound.music = !gameSound.music;
+        gameSound.soundFxMute = !gameSound.soundFxMute;
+        gameSound.musicMute = !gameSound.musicMute;
 
         
         ChangeImage();

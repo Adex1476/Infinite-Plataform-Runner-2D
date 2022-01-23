@@ -6,17 +6,13 @@ using UnityEngine;
 public class BulletManager : MonoBehaviour
 {
     GameManager gameManager;
-    [SerializeField]
-    private GameObject bullet;
+    [SerializeField] private GameObject bullet;
 
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] private GameObject player;
     
-    [SerializeField]
-    private Player dataPlayer;
+    [SerializeField] private Player dataPlayer;
 
-    [SerializeField]
-    private Vector2 clickPosition;
+    [SerializeField] private Vector2 clickPosition;
     
     public Vector2 clickDirection;
     
@@ -24,17 +20,15 @@ public class BulletManager : MonoBehaviour
 
     private bool canShoot = true;
 
-    [SerializeField]
-    private float shootCDTime; //Limitar a 0.8 per tal de lligar amb la animació de UI
+    [SerializeField] private float shootCDTime; //Limitar a 0.8 per tal de lligar amb la animació de UI
 
-    [SerializeField]
-    private Animator bulletUIAnimator;
+    [SerializeField] private Animator bulletUIAnimator;
 
-    [SerializeField]
-    private int totalLoad = 6;
+    [SerializeField] private int totalLoad = 6;
 
-    [SerializeField]
-    private int bulletIndex;
+    [SerializeField] private int bulletIndex;
+
+    [SerializeField] private EffectAudioController effectAudioController;
 
 
     void Awake()
@@ -66,7 +60,6 @@ public class BulletManager : MonoBehaviour
                         PullTrigger();
                         EffectAudioController.PlaySound("playershoot");
                         StartCoroutine(ShootColdown());
-
                     }
                     //player.GetComponentInParent<Animator>().SetBool("shooting", true);
                 }
@@ -76,6 +69,7 @@ public class BulletManager : MonoBehaviour
 
     private IEnumerator ReloadCooldown()
     {
+        effectAudioController.EmptyShootGun();
         bulletUIAnimator.SetBool("Reloading", true); 
         bulletIndex = 6;
         yield return new WaitForSeconds(shootCDTime);

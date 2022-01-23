@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     [SerializeField] private Button muteMusic;
     [SerializeField] private Button muteFx;
     [SerializeField] private Image muteFxImg;
@@ -14,7 +12,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private GameSound gameSound;
     [SerializeField] private GameObject pauseGO;
 
-   
+
     void Start()
     {
         
@@ -23,13 +21,13 @@ public class Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        muteFxImg.enabled = gameSound.soundFx;
-        muteMusicImg.enabled = gameSound.music;
+        muteFxImg.enabled = gameSound.soundFxMute;
+        muteMusicImg.enabled = gameSound.musicMute;
     }
 
-    public void Music() => gameSound.music = !gameSound.music;
+    public void Music() => gameSound.musicMute = !gameSound.musicMute;
 
-    public void SoundFx() => gameSound.soundFx = !gameSound.soundFx;
+    public void SoundFx() => gameSound.soundFxMute = !gameSound.soundFxMute;
 
     public void Back() => gameObject.SetActive(false);
 

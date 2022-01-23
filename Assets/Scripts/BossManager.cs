@@ -123,6 +123,7 @@ public class BossManager : MonoBehaviour
             GetComponent<Animator>().SetBool("isDead", true);
             gameObject.layer = 0;
             uic.EndGame();
+            player.isDone = true;
             //DestroyBoss();
         }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EffectAudioController : MonoBehaviour
 {
-    public static AudioClip healSound, hitSound, playershootSound, shootbossSound, bossdeathSound, miniondeathSound, bosshitSound;
+    public static AudioClip healSound, hitSound, playershootSound, shootbossSound, bossdeathSound, miniondeathSound, bosshitSound, click, backClick, gunMetalClick;
     static AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,10 @@ public class EffectAudioController : MonoBehaviour
         bossdeathSound = Resources.Load<AudioClip>("bossdeath");
         miniondeathSound = Resources.Load<AudioClip>("miniondeath");
         bosshitSound = Resources.Load<AudioClip>("bosshit");
+
+        click = Resources.Load<AudioClip>("click");
+        backClick = Resources.Load<AudioClip>("backclick");
+        gunMetalClick = Resources.Load<AudioClip>("gunMetalClick");
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -53,4 +57,12 @@ public class EffectAudioController : MonoBehaviour
                 break;
         }
     }
+
+    public void OnClickSound() => audioSrc.PlayOneShot(click);
+    
+
+    public void OnClickBackSound() => audioSrc.PlayOneShot(backClick);
+
+
+    public void EmptyShootGun() => audioSrc.PlayOneShot(gunMetalClick);
 }

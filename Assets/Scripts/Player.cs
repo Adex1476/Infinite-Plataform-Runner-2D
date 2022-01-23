@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
 
     private bool hurt = false;
 
+    public bool isDone = false;
+
 
     // Start is called before the first frame update
     void Start()

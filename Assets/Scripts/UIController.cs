@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
-public class UIController : MonoBehaviour 
+public class UIController : MonoBehaviour
 {
-    Text distanceText;
-    
-    Player player;
+    [SerializeField] Text distanceText;
 
-    GameManager gameManager;
+    [SerializeField] Player player;
 
-    GameObject results;
+    [SerializeField] GameManager gameManager;
 
-    GameObject win;
+    [SerializeField] GameObject results;
 
-    GameObject distGO;
+    [SerializeField] GameObject win;
 
-    Text finalDistanceText;
+    [SerializeField] GameObject distGO;
+
+    [SerializeField] Text finalDistanceText;
 
     private int distance;
     private void Awake()
@@ -30,9 +31,6 @@ public class UIController : MonoBehaviour
         distGO = GameObject.Find("distanceText");
         distanceText = distGO.GetComponent<Text>();
 
-        finalDistanceText = GameObject.Find("FinalDistanceText").GetComponent<Text>();
-        results = GameObject.Find("Results");
-        win = GameObject.Find("Win");
         results.SetActive(false);
         win.SetActive(false);
     }
@@ -50,7 +48,7 @@ public class UIController : MonoBehaviour
         distance = (int)player.distance;
         distanceText.text = distance + " m";
 
-        if (player.isDead)
+        if (player.isDead && !player.isDone)
         {
             results.SetActive(true);
             distGO.SetActive(false);
@@ -60,11 +58,17 @@ public class UIController : MonoBehaviour
 
     public void EndGame ()
     {
+        StartCoroutine(EndGameDelay());
+    }
+
+    private IEnumerator EndGameDelay()
+    {
+        yield return new WaitForSeconds(2f);
         gameManager.Win();
         win.SetActive(true);
         distGO.SetActive(false);
+        player.isDead = true;
     }
-
 
     public void Retry () => SceneManager.LoadScene("GameScene");
     

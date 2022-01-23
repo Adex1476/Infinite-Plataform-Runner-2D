@@ -34,7 +34,7 @@ public class MenuNavegation : MonoBehaviour
 
     private void LoadMenu() => canvasMenus[0].SetActive(true);
     private void UnloadMenu() => canvasMenus[0].SetActive(false);
-    private void LoadGame() => SceneManager.LoadScene(1, LoadSceneMode.Single);
+    private void LoadGame() => SceneManager.LoadScene(2, LoadSceneMode.Single);
     private void LoadShop() { UnloadMenu(); canvasMenus[1].SetActive(true); }
     private void UnloadShop() { canvasMenus[1].SetActive(false); LoadMenu(); }
     private void LoadGarage() { UnloadMenu(); canvasMenus[2].SetActive(true); }

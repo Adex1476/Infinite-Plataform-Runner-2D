@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     public bool bossDefeated = false;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settings;
-    private bool settingsActive;
+    [SerializeField] private bool settingsActive;
+    [SerializeField] private EffectAudioController _effectAudioController;
 
     public static GameManager Instance
     {
@@ -52,9 +53,16 @@ public class GameManager : MonoBehaviour
     {
         GameObject.Find("HealthBar").GetComponent<HealthBar>().SetHealth(playerData.health);
 
-        if (Input.GetKeyDown(KeyCode.P) && !playerData.isDead)
+        if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) && !playerData.isDead && !settingsActive)
         {
             Pause();
+            if (isPaused)
+            {
+                _effectAudioController.OnClickSound();
+            }else
+            {
+                _effectAudioController.OnClickBackSound();
+            }
         }
 
         if (!settingsActive)
@@ -62,6 +70,7 @@ public class GameManager : MonoBehaviour
 
         if (!playerData.isDead) 
             Player.GetComponent<Animator>().enabled = !isPaused;
+
 
     }
 
@@ -80,5 +89,6 @@ public class GameManager : MonoBehaviour
     {
         settingsActive = false;
         isPaused = true;
+        settings.SetActive(settingsActive);
     }
 }

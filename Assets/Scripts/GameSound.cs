@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "My Assets/Sound Data")]
 public class GameSound : ScriptableObject
 {
-    public bool soundFx;
-    public bool music;
+    public bool soundFxMute;
+    public bool musicMute;
+    public float musicVolume;
+    public float soundFxVolume;
 }
