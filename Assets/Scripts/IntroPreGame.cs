@@ -8,6 +8,7 @@ public class IntroPreGame : MonoBehaviour
     [SerializeField] GameObject warning;
     [SerializeField] GameObject headphones;
     [SerializeField] float time;
+    [SerializeField] Camera main;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class IntroPreGame : MonoBehaviour
 
         if (time > 5)
         {
+            main.backgroundColor = Color.grey;
             warning.SetActive(false);
             headphones.SetActive(true);
         }

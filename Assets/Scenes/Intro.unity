@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warning: {fileID: 537166678}
   headphones: {fileID: 1593568012}
+  time: 0
+  main: {fileID: 1830718898}
 --- !u!1 &537166678
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +822,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
